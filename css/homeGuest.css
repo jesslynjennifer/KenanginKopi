@@ -4,16 +4,26 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.backgroundImage img{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
 
 header{
     top: 0;
-    position: sticky;
     background-color: rgb(255, 255, 255, 0.95); /* 0.8 itu buat transparansi, ilangin aja kalo gamau */
     
 }
 
 .headerContainer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
@@ -38,27 +48,27 @@ nav a {                                     /*nav*/
 
 .hero{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px);
+    /* height: calc(100vh - 80px); */
 
     padding: 20px 0;
-
-    background-image: url(background.jpeg);
-    background-size: cover;       /* Membuat gambar menutupi area */
-    background-position: center;  /* Menjaga fokus di tengah */
-    background-repeat: no-repeat; /* Mencegah pengulangan */
 }
 
 
 
 .heroContainer {
-
     padding: 0px 20px;
+    margin-top: 80px;
     border: none;
     border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.9);
     width: 700px;
+}
+
+.heroContainer h2{
+    color: rgb(135, 76, 0);
 }
 
 .gridContainer {
@@ -69,7 +79,9 @@ nav a {                                     /*nav*/
 .gridTemplate {
     margin: 0px 10px;
     margin-bottom: 15px;
-    padding-left: 10px;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 10px;
     border: 1px solid;
     border-color: rgb(161, 85, 22, 0.9);
     border-radius: 7px;
@@ -82,21 +94,17 @@ nav a {                                     /*nav*/
     margin-bottom: 7px;
 }
 
-.gridTemplate a{
-    text-decoration: none;
-    color: white;
+.gridTemplate button{
     border: none;
-    border-radius: 8px;
-    background-color: rgb(135, 76, 0);
-    padding: 5px 7px;
+    border-radius: 12px;
+    background-color: rgb(151, 77, 40);
+    color: whitesmoke;
+    padding: 7px 10px;
 }
 
-.buttonDetails {
-    margin-top: 5px;
-}
-
-.footerContent{
+.footer{
     text-align: center;
-
+    background-color: white;
+    padding: 1px;
 }
 

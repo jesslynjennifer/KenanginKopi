@@ -5,25 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KenanginKopi - Home</title>
 
-    <link rel="stylesheet" href="homeGuest.css">
+    <link rel="stylesheet" href="./css/homeGuest.css">
 </head>
 <body>
-
-    <header>
-        <div class="headerContainer">
-            <div class="logo">
-                <h3>KenanginKopi</h3>
-            </div>
-            
-            <div class="dateHeader">        <!-- dipisah gini biar enak nantinya klao ngedit -->    
-                <p>ini tanggal</p>
-            </div>
-    
-            <nav class="headerButton">
-                <a href="#">Login</a>
-            </nav>
-        </div>
-    </header>
+    <div class="backgroundImage">
+        <img src="./images/background.jpeg" alt="">
+    </div>
+<?php
+    include 'navbarGuest.php';
+?>
 
     <main>
         <section class="hero">                              <!-- HERO -->
@@ -33,44 +23,41 @@
                 <div class="gridContainer">
                     <div class="gridTemplate">                     <!-- CONTAINER GRID -->
                         <h4>Morning Night Store</h4>
-                        <a href="#" class="buttonDetails">View Details</a>
+                        <button class="viewDetailsButton">View Details</button>
                     </div>
 
                     <div class="gridTemplate">                     <!-- CONTAINER GRID -->
                         <h4>Morning Night Store</h4>
-                        <a href="#" class="buttonDetails">View Details</a>
+                        <button class="viewDetailsButton">View Details</button>
                     </div>
 
                     <div class="gridTemplate">                     <!-- CONTAINER GRID -->
                         <h4>Morning Night Store</h4>
-                        <a href="#" class="buttonDetails">View Details</a>
+                        <button class="viewDetailsButton">View Details</button>
                     </div>
 
                     <div class="gridTemplate">                     <!-- CONTAINER GRID -->
                         <h4>Morning Night Store</h4>
-                        <a href="#" class="buttonDetails">View Details</a>
+                        <button class="viewDetailsButton">View Details</button>
                     </div>
 
                     <div class="gridTemplate">                     <!-- CONTAINER GRID -->
                         <h4>Morning Night Store</h4>
-                        <a href="#" class="buttonDetails">View Details</a>
+                        <button class="viewDetailsButton">View Details</button>
                     </div>
 
                     <div class="gridTemplate">                     <!-- CONTAINER GRID -->
                         <h4>Morning Night Store</h4>
-                        <a href="#" class="buttonDetails">View Details</a>
+                        <button class="viewDetailsButton">View Details</button>
                     </div>
                 </div>
             </div>
-            <!-- <img src="background.jpeg" alt="background kopinya">  Ini gambar backgroundnya -->
         </section>
     </main>
 
-
-    
-    <footer class="footerContent">                                <!-- Ini FOOTER -->
-        <p>&copy; 2025 KenanginKopi</p>
-    </footer>
+<?php
+    include 'footer.php';
+?>
     
 </body>
 </html>
