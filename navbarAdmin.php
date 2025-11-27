@@ -9,7 +9,7 @@
         <header>
         <div class="headerContainer">
             <div class="logo">
-                <a href="./homeGuest.php">KenanginKopi</a>
+                <h3><a href="./homeGuest.php">KenanginKopi</a></h3>
             </div>
             
             <div class="dateHeader">        <!-- dipisah gini biar enak nantinya klao ngedit -->    
@@ -17,7 +17,7 @@
             </div>
     
             <nav class="headerButton">
-                <button><a href="#">Login</a></button>
+                <a href="#">Login</a>
             </nav>
         </div>
     </header>

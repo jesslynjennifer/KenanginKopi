@@ -26,24 +26,36 @@ header{
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
+    padding: 20px 40px;
     color: rgb(176, 103, 40);
 }
 
-.logo,
-.dateHeader {                               /*logo sama tanggaal yg ditengah*/
+.logo a{
+    text-decoration: none;
+    color: rgb(176, 103, 40);   
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.dateHeader {                               
     padding: 0px 20px;
     color: rgb(176, 103, 40);    
+    font-size: 20px;
 }
 
 
-nav a {                                     /*nav*/
-    text-decoration: none;
-    color: whitesmoke;
+.headerButton button{
     border: none;
     border-radius: 12px;
     background-color: rgb(151, 77, 40);
+    color: whitesmoke;
     padding: 10px 15px;
+    font-size: 20px;
+}
+
+.headerButton button a{
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 .hero{
@@ -51,16 +63,15 @@ nav a {                                     /*nav*/
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* height: calc(100vh - 80px); */
+    min-height: fit-content;
 
     padding: 20px 0;
 }
 
 
-
 .heroContainer {
     padding: 0px 20px;
-    margin-top: 80px;
+    margin-top: 50px;
     border: none;
     border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.9);
