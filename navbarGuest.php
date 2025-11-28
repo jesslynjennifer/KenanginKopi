@@ -1,30 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guest - KenanginKopi</title>
-    <link rel="stylesheet" href="css/navbar.css">
-</head>
-<body>
+<link rel="stylesheet" href="css/navbar.css">
 
 <header>
-    <div class="headerContainer">
+    <nav>
+        <div class="navbar">
+                <div class="logo">
+                    <a href="homeGuest.php">KenanginKopi</a>
+                </div>
 
-        <div class="logo">
-            <a href="homeGuest.php">KenanginKopi</a>
+                <div class="navbarDate">
+                    <?php echo date('l, d F Y'); ?>
+                </div>
+
+                <nav class="navbarButton">
+                    <a class="btn" href="login.php">Login</a>
+                </nav>
         </div>
-
-        <div class="dateHeader">
-            <?php echo date('l, d F Y'); ?>
-        </div>
-
-        <nav class="headerButton">
-            <a class="btn" href="login.php">Login</a>
-        </nav>
-
-    </div>
+    </nav>
 </header>
-
-</body>
-</html>

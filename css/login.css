@@ -1,11 +1,87 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 75%;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-box label {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.input-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.login-btn button{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(176, 103, 40);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-btn button:hover {
+    background-color: rgb(135, 76, 0);
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.register a {
+    color: rgb(176, 103, 40);
+    text-decoration: none;
+}
+
+/* .form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 85vh;
 }
 
 .login-container {
@@ -28,7 +104,7 @@ input {
     border: 1px solid #ccc;
 }
 
-.remember-label {
+.remember-me {
     font-size: 14px;
     display: block;
     margin-top: 10px;
@@ -67,4 +143,4 @@ input {
 
 .register a:hover {
     text-decoration: underline;
-}
+} */

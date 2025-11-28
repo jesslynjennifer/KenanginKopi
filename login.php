@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "db.php";
+include "navbarGuest.php";
 
 $error = "";
 
@@ -42,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($remember) {
                     setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
                 }
-                
+
                 if ($user['UserRole'] == "Admin") {
                     header("Location: admin/home_admin.php");
                 } else {
@@ -68,31 +69,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="login-container">
-    <h2 style="text-align:center;">Login</h2>
+    <main>
+        <div class="login-container">
+            <form class="login-form" method="POST">
+                <h2>Login</h2>
+                <div class="input-box">
+                    <label for="username">Username</label>
+                    <input type="text" name="username">
+                </div>
 
-    <form method="POST">
-        Username
-        <input type="text" name="username">
+                <div class="input-box">
+                    <label for="password">Password</label>
+                    <input type="password" name="password">
+                </div>
 
-        Password
-        <input type="password" name="password">
+                <div class="remember-me">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
 
-        <label>
-            <input type="checkbox" name="remember"> Remember me
-        </label>
+                <div class="login-btn">
+                    <button type="submit">Login</button>
+                </div>
 
-        <button type="submit">Login</button>
-    </form>
+                <div class="register">
+                    <p>Don’t have an account? <a href="register.php"> Register here!</a></p>
+                </div>
 
-    <?php if ($error) { echo "<p class='error'>$error</p>"; } ?>
+                <?php if ($error) { echo "<p class='error'>$error</p>"; } ?>
+            </form>
 
-    <div class="register">
-        <a href="register.php">Don’t have an account? Register</a>
-    </div>
+
+        </div>
+    </main>
 </div>
 </body>
 </html>
