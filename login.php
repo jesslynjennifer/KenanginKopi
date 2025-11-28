@@ -1,49 +1,53 @@
 <?php
 session_start();
-include "db.php";  // file koneksi ke database
+include "db.php";
 
-// Auto Login if remember me cookie exists
+$error = "";
+
+// Auto login via cookie (optional)
 if (!isset($_SESSION['logged_in_user']) && isset($_COOKIE['remember_user'])) {
     $_SESSION['logged_in_user'] = $_COOKIE['remember_user'];
     header("Location: home.php");
     exit;
 }
 
-$error = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username = trim($_POST["username"]);
-    $password = trim($_POST["password"]);
-    $remember = isset($_POST["remember"]);
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $remember = isset($_POST['remember']);
 
-    // Validation
+    // Check empty
     if (empty($username) || empty($password)) {
-        $error = "Username and Password must be filled!";
+        $error = "Username and password must be filled!";
     } else {
 
-        // Check user in DB
-        $query = "SELECT * FROM users WHERE username = '$username'";
+        // Cek username di DB
+        $query = "SELECT * FROM Users WHERE UserName = '$username'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
 
             $user = mysqli_fetch_assoc($result);
 
-            if ($password === $user['password']) { // gunakan password_hash kalau mau lebih secure
+            // Password hashing verification
+            if (password_verify($password, $user['UserPassword'])) {
 
-                // SET SESSION
+                // Set session
                 $_SESSION['logged_in_user'] = $user['UserID'];
-                $_SESSION['role'] = $user['Role'];
-                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['UserRole'];
+                $_SESSION['username'] = $user['UserName'];
 
-                // REMEMBER ME
+                // Remember me
                 if ($remember) {
                     setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
                 }
-
-                // Redirect setelah berhasil login
-                header("Location: home.php");
+                
+                if ($user['UserRole'] == "Admin") {
+                    header("Location: admin/home_admin.php");
+                } else {
+                    header("Location: user/home_user.php");
+                }
                 exit;
 
             } else {
@@ -56,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -44,18 +44,15 @@ header{
 }
 
 
-.headerButton button{
+.headerButton a{
+    text-decoration: none;
+    font-weight: bold;
     border: none;
     border-radius: 12px;
     background-color: rgb(151, 77, 40);
     color: whitesmoke;
     padding: 10px 15px;
     font-size: 20px;
-}
-
-.headerButton button a{
-    text-decoration: none;
-    color: whitesmoke;
 }
 
 .hero{
