@@ -11,9 +11,9 @@
                     <?php echo date('l, d F Y'); ?>
                 </div>
 
-                <nav class="navbarButton">
+                <div class="loginBtn">
                     <a class="btn" href="login.php">Login</a>
-                </nav>
+                </div>
         </div>
     </nav>
 </header>

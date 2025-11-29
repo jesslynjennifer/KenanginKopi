@@ -5,7 +5,7 @@ body {
     margin: 0;
 }
 
-.login-container {
+.register-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -15,11 +15,11 @@ body {
     margin-bottom: 40px;
 }
 
-.login-container h2 {
+.register-container h2 {
     margin-bottom: 20px;
 }
 
-.login-form {
+.register-form {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -44,14 +44,7 @@ body {
     border-radius: 5px;
 }
 
-.remember-me {
-    display: flex;
-    align-items: center;
-    margin-top: 35px;
-    margin-bottom: 15px;
-}
-
-.login-btn button{
+.register-btn button{
     width: 100%;
     padding: 10px;
     background-color: rgb(216, 166, 122);
@@ -62,17 +55,22 @@ body {
     font-size: 16px;
 }
 
-.login-btn button:hover {
-    background-color: rgb(216, 166, 122)
+.register-btn button:hover {
+    background-color: rgb(216, 166, 122);
 }
 
 .error {
     color: red;
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
-.register-link a {
+.login-link {
+    margin-top: 20px;
+}
+
+.login-link a {
     color: rgb(216, 166, 122);
     text-decoration: none;
 }

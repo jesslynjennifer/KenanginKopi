@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] != "Customer") {
     header("Location: ../login.php");
@@ -13,8 +12,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != "Customer") {
     <nav>
         <div class="navbar">
 
-        <div class="logo>
-            <a class="company" href="homeUser.php">KenanginKopi</a>
+        <div class="logo">
+            <a href="homeUser.php">KenanginKopi</a>
         </div>
 
         
@@ -23,7 +22,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != "Customer") {
         </div>
 
         <div class="navbarMenu">
-            <a class="username" href="profile.php">
+            <a class="usernameNavbar" href="profile.php">
                 <?php echo $_SESSION['username']; ?>
             </a>
 

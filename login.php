@@ -45,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
                 if ($user['UserRole'] == "Admin") {
-                    header("Location: admin/home_admin.php");
+                    header("Location: homeAdmin.php");
                 } else {
-                    header("Location: user/home_user.php");
+                    header("Location: homeUser.php");
                 }
                 exit;
 
@@ -77,12 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form class="login-form" method="POST">
                 <h2>Login</h2>
                 <div class="input-box">
-                    <label for="username">Username</label>
+                    <label for="username">Username:</label>
                     <input type="text" name="username">
                 </div>
 
                 <div class="input-box">
-                    <label for="password">Password</label>
+                    <label for="password">Password:</label>
                     <input type="password" name="password">
                 </div>
 
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit">Login</button>
                 </div>
 
-                <div class="register">
+                <div class="register-link">
                     <p>Don’t have an account? <a href="register.php"> Register here!</a></p>
                 </div>
 

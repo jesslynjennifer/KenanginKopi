@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db.php';           
-include 'navbarGuest.php';  
+include 'navbarUser.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">

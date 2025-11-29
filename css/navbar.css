@@ -22,29 +22,48 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    color: rgb(176, 103, 40);
+    color: rgb(101, 79, 60);
 }
 
 .logo a{
     text-decoration: none;
-    color: rgb(176, 103, 40);   
+    color: rgb(101, 79, 60);   
     font-weight: bold;
     font-size: 25px;
 }
 
 .navbarDate {                               
     padding: 0px 20px;
-    color: rgb(176, 103, 40);    
+    color: rgb(101, 79, 60);    
     font-size: 20px;
 }
 
 
-.navbarButton a{
+.loginBtn a{
     text-decoration: none;
     font-weight: bold;
     border: none;
     border-radius: 12px;
-    background-color: rgb(151, 77, 40);
+    background-color: rgb(101, 79, 60);
+    color: whitesmoke;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+
+.usernameNavbar {
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    color: rgb(101, 79, 60);    
+    font-size: 18px;
+}
+
+.logoutBtn {
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(216, 166, 122);
     color: whitesmoke;
     padding: 10px 15px;
     font-size: 20px;
