@@ -20,7 +20,7 @@ include 'navbarAdmin.php';
 
                 <div class="gridContainer">
                     <?php
-                    // Ambil semua store dari DB
+                    
                     $sql = "SELECT StoreID, StoreName FROM Store ORDER BY StoreName";
                     $res = mysqli_query($conn, $sql);
 

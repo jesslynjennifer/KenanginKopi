@@ -6,7 +6,6 @@ include "navbarGuest.php";
 $error = "";
 $success = "";
 
-// initialize variables so they exist when rendering form
 $fullname = "";
 $username = "";
 $email = "";
