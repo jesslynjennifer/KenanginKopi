@@ -8,7 +8,6 @@ unset($_SESSION['username']);
 include "./utils/db.php";
 $error = "";
 
-// Remember me auto-login
 if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
     $_SESSION['UserID'] = $_COOKIE['remember_user'];
     header("Location: homeUser.php");
@@ -33,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (password_verify($password, $user['UserPassword'])) {
 
-                // SET SESSION dengan nama konsisten
                 $_SESSION['UserID'] = $user['UserID'];
                 $_SESSION['UserRole'] = $user['UserRole'];
                 $_SESSION['UserName'] = $user['UserName'];

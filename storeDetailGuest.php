@@ -2,7 +2,6 @@
 session_start();
 include "./utils/db.php";
 
-// Cek store ID dari URL
 if (!isset($_GET['storeid'])) {
     echo "Store not found.";
     exit;
@@ -10,8 +9,11 @@ if (!isset($_GET['storeid'])) {
 
 $storeid = mysqli_real_escape_string($conn, $_GET['storeid']);
 
-// Ambil data store
-$storeQuery = "SELECT * FROM Store WHERE StoreID = '$storeid'";
+$storeQuery = "
+SELECT * FROM Store 
+WHERE StoreID = '$storeid'
+";
+
 $storeRes = mysqli_query($conn, $storeQuery);
 $store = mysqli_fetch_assoc($storeRes);
 
@@ -20,7 +22,6 @@ if (!$store) {
     exit;
 }
 
-// Ambil coffee yang ada di store ini
 $coffeeQuery = "
     SELECT Coffee.CoffeeName, Coffee.CoffeeDesc, StoreCoffee.Price
     FROM StoreCoffee
@@ -39,31 +40,30 @@ $coffeeRes = mysqli_query($conn, $coffeeQuery);
     <link rel="stylesheet" href="./css/storeDetail.css">
 </head>
 <body>
-<?php include "./utils/navbarGuest.php"; ?>
+    <?php include "./utils/navbarGuest.php"; ?>
 
-<div class="container">
+    <div class="container">
 
-    <h2 class="store-title"><?= $store['StoreName']; ?></h2>
-    <p class="location">Location: <?= htmlspecialchars($store['StoreLocation']); ?></p>
-    <h2 class="menu">Menu: </h2>
-    <div class="coffee-list">
+        <h2 class="store-title"><?= $store['StoreName']; ?></h2>
+        <p class="location">Location: <?= htmlspecialchars($store['StoreLocation']); ?></p>
+        <h2 class="menu">Menu: </h2>
 
-        <?php while ($row = mysqli_fetch_assoc($coffeeRes)) : ?>
-            <div class="coffee-card">
-                <h3><?= htmlspecialchars($row['CoffeeName']); ?> - Rp <?= number_format($row['Price'], 0, ',', '.'); ?></h3>
-                <p class="desc"><?= htmlspecialchars($row['CoffeeDesc']); ?></p>
-            </div>
-        <?php endwhile; ?>
+        <div class="coffee-list">
+            <?php while ($row = mysqli_fetch_assoc($coffeeRes)) : ?>
+                <div class="coffee-card">
+                    <h3><?= htmlspecialchars($row['CoffeeName']); ?> - Rp <?= number_format($row['Price'], 0, ',', '.'); ?></h3>
+                    <p class="desc"><?= htmlspecialchars($row['CoffeeDesc']); ?></p>
+                </div>
+            <?php endwhile; ?>
 
-        <?php if (mysqli_num_rows($coffeeRes) == 0) : ?>
-            <p class="no-data">No coffee available in this store.</p>
-        <?php endif; ?>
+            <?php if (mysqli_num_rows($coffeeRes) == 0) : ?>
+                <p class="no-data">No coffee available in this store.</p>
+            <?php endif; ?>
+        </div>
 
     </div>
 
-</div>
-
-<?php include "./utils/footer.php"; ?>
+    <?php include "./utils/footer.php"; ?>
 
 </body>
 </html>

@@ -73,7 +73,6 @@ body {
     color: #555;
 }
 
-/* OPTIONAL — Smooth fade animation */
 .coffee-card {
     animation: fadeIn 0.4s ease-in;
 }
@@ -81,4 +80,66 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+.header-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-btn {
+    background: #d7a878;
+    padding: 6px 18px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.cart-btn:hover {
+    opacity: 0.8;
+}
+
+.location {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #444;
+}
+.menu-title {
+    margin-bottom: 18px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cart-form {
+    margin-top: 12px;
+}
+
+.amount-label {
+    font-weight: 600;
+}
+.amount-input {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn-add {
+    background: #c89f7a;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    margin-top: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background: #b78b65;
 }

@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password'] ?? "");
     $role     = "Customer";
 
-    // Validation
     if (empty($fullname) || !preg_match("/^[a-zA-Z ]+$/", $fullname)) {
         $error = "Full name must contain alphabet & spaces only!";
     }
@@ -91,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>

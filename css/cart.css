@@ -1,0 +1,130 @@
+/* ================================
+   CART PAGE STYLE
+================================ */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fafafa;
+}
+
+/* Container */
+.cart-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+/* Heading */
+.cart-container h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Table */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.cart-table th {
+    background: #2b2b2b;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Update Input */
+.cart-table input[type="number"] {
+    width: 70px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Buttons */
+.update-btn, .delete-btn, .pay-btn {
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+/* Update button */
+.update-btn {
+    background: #f4a261;
+    color: white;
+}
+.update-btn:hover {
+    background: #e68a3f;
+}
+
+/* Delete button */
+.delete-btn {
+    background: #e63946;
+    color: white;
+}
+.delete-btn:hover {
+    background: #cc2e3a;
+}
+
+/* Pay button */
+.pay-btn {
+    background: #2a9d8f;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    float: right;
+}
+.pay-btn:hover {
+    background: #23867a;
+}
+
+/* Totals */
+.total-box {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* No data message */
+.no-coffee {
+    text-align: center;
+    font-size: 18px;
+    padding: 30px 0;
+    color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        width: 95%;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        font-size: 14px;
+    }
+
+    .pay-btn {
+        width: 100%;
+        text-align: center;
+        float: none;
+    }
+}

@@ -2,7 +2,6 @@
 session_start();
 include './utils/db.php';
 
-// ADMIN ONLY PAGE
 if (!isset($_SESSION['UserID']) || $_SESSION['UserRole'] !== "Admin") {
     header("Location: login.php");
     exit;
