@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+$paymentSuccess = false;
+
+
+if (isset($_POST['pay'])) {
+    unset($_SESSION['cart']);   // Hapus semua isi cart
+    $paymentSuccess = true;     // Tampilkan pesan sukses
+}
+
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 ?>
 
@@ -12,68 +20,81 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 </head>
 <body>
 
-<h1>Your Cart</h1>
+    <div class="cart-container">
+        <h1>Your Cart</h1>
 
-<?php if (empty($cart)): ?>
-    <p>No coffee added yet.</p>
-<?php else: ?>
+        <!-- Jika payment sukses -->
+        <?php if ($paymentSuccess): ?>
+            <p class="success-message">Payment Successful!</p>
+            <a href="homeUser.php" class="back-home-btn">Back to Home</a>
+            exit;
+        <?php endif; ?>
 
-    <?php
-    $totalItem = 0;
-    $totalPrice = 0;
-    ?>
 
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>Coffee</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Qty</th>
-            <th>Subtotal</th>
-            <th>Action</th>
-        </tr>
+        <!-- Jika cart kosong -->
+        <?php if (empty($cart)): ?>
+            <p class="no-coffee">No coffee added yet.</p>
 
-        <?php foreach ($cart as $id => $item): ?>
+        <?php else: ?>
+
             <?php
-            $subtotal = $item['price'] * $item['qty'];
-            $totalItem += $item['qty'];
-            $totalPrice += $subtotal;
+            $totalItem = 0;
+            $totalPrice = 0;
             ?>
-            <tr>
-                <td><?= $item['name'] ?></td>
-                <td><?= $item['desc'] ?></td>
-                <td>Rp <?= number_format($item['price'], 0, ',', '.') ?></td>
 
-                <td>
-                    <form action="updateCart.php" method="POST">
-                        <input type="hidden" name="coffeeid" value="<?= $id ?>">
-                        <input type="number" name="qty" value="<?= $item['qty'] ?>" min="1">
-                        <button type="submit">Update</button>
-                    </form>
-                </td>
+            <table class="cart-table">
+                <tr>
+                    <th>Coffee</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
 
-                <td>Rp <?= number_format($subtotal, 0, ',', '.') ?></td>
+                <?php foreach ($cart as $id => $item): ?>
+                    <?php
+                    $subtotal = $item['price'] * $item['qty'];
+                    $totalItem += $item['qty'];
+                    $totalPrice += $subtotal;
+                    ?>
+                    <tr>
+                        <td><?= $item['name'] ?></td>
+                        <td><?= $item['desc'] ?></td>
+                        <td>Rp <?= number_format($item['price'], 0, ',', '.') ?></td>
 
-                <td>
-                    <form action="deleteCart.php" method="POST">
-                        <input type="hidden" name="coffeeid" value="<?= $id ?>">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+                        <td>
+                            <form action="updateCart.php" method="POST">
+                                <input type="hidden" name="coffeeid" value="<?= $id ?>">
+                                <input type="number" name="qty" value="<?= $item['qty'] ?>" min="1">
+                                <button type="submit" class="update-btn">Update</button>
+                            </form>
+                        </td>
 
-    </table>
+                        <td>Rp <?= number_format($subtotal, 0, ',', '.') ?></td>
 
-    <br><br>
-    <h3>Total Item: <?= $totalItem ?></h3>
-    <h3>Total Price: Rp <?= number_format($totalPrice, 0, ',', '.') ?></h3>
+                        <td>
+                            <form action="deleteCart.php" method="POST">
+                                <input type="hidden" name="coffeeid" value="<?= $id ?>">
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
 
-    <form action="pay.php" method="POST">
-        <button type="submit">Pay</button>
-    </form>
+            </table>
 
-<?php endif; ?>
+            <div class="total-box">
+                Total Items: <?= $totalItem ?> <br>
+                Total Price: Rp <?= number_format($totalPrice, 0, ',', '.') ?>
+            </div>
+
+            <form method="POST">
+                <button type="submit" name="pay" class="pay-btn">Pay</button>
+            </form>
+
+        <?php endif; ?>
+    </div>
 
 </body>
 </html>
