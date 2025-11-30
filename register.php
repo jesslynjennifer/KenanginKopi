@@ -1,7 +1,6 @@
 <?php
 session_start();
-include "db.php";
-include "navbarGuest.php";
+include "./utils/db.php";
 
 $error = "";
 $success = "";
@@ -26,14 +25,13 @@ function generateUserID($conn) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // capture POST into variables (trimmed)
     $fullname = trim($_POST['fullname'] ?? "");
     $username = trim($_POST['username'] ?? "");
     $email    = trim($_POST['email'] ?? "");
     $password = trim($_POST['password'] ?? "");
-    $role     = "Customer"; 
+    $role     = "Customer";
 
-    // VALIDATION (same logic as before)
+    // Validation
     if (empty($fullname) || !preg_match("/^[a-zA-Z ]+$/", $fullname)) {
         $error = "Full name must contain alphabet & spaces only!";
     }
@@ -56,7 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Invalid email format!";
     }
     else {
-        $check = mysqli_query($conn, "SELECT * FROM Users WHERE UserName='" . mysqli_real_escape_string($conn, $username) . "' OR UserEmail='" . mysqli_real_escape_string($conn, $email) . "'");
+        $safeUser = mysqli_real_escape_string($conn, $username);
+        $safeEmail = mysqli_real_escape_string($conn, $email);
+
+        $check = mysqli_query($conn,
+            "SELECT * FROM Users WHERE UserName='$safeUser' OR UserEmail='$safeEmail'"
+        );
+
         if ($check && mysqli_num_rows($check) > 0) {
             $error = "Username or Email already exists!";
         }
@@ -71,17 +75,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($error)) {
+
         $UserID = generateUserID($conn);
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO Users (UserID, FullName, UserName, UserEmail, UserPassword, UserRole) VALUES (
-            '" . mysqli_real_escape_string($conn, $UserID) . "',
-            '" . mysqli_real_escape_string($conn, $fullname) . "',
-            '" . mysqli_real_escape_string($conn, $username) . "',
-            '" . mysqli_real_escape_string($conn, $email) . "',
-            '" . mysqli_real_escape_string($conn, $hashedPassword) . "',
-            '" . mysqli_real_escape_string($conn, $role) . "'
-        )";
+        $query = "INSERT INTO Users (UserID, FullName, UserName, UserEmail, UserPassword, UserRole)
+        VALUES ('$UserID', '$fullname', '$username', '$email', '$hashedPassword', '$role')";
 
         if (mysqli_query($conn, $query)) {
             header("Location: login.php");
@@ -92,7 +91,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,44 +99,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <div class="register-container">
+<?php include "./utils/navbarGuest.php"; ?>
 
-        <form class="register-form" method="POST" novalidate>
-            <h2>Register</h2>
+<div class="register-container">
+    <form class="register-form" method="POST" novalidate>
+        <h2>Register</h2>
 
-            <div class="input-box">
-                <label for="fullname">Full Name:</label>  
-                <input type="text" name="fullname" value="<?php echo htmlspecialchars($fullname); ?>" required>
-            </div>
-            
-            <div class="input-box">
-                <label for="username">Username:</label>  
-                <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
-            </div>
-            
-            <div class="input-box">
-                <label for="email">Email:</label>  
-                <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-            </div>
-            
-            <div class="input-box">
-                <label for="password">Password:</label>  
-                <input type="password" name="password" value="" required>
-            </div>
+        <div class="input-box">
+            <label for="fullname">Full Name:</label>
+            <input type="text" name="fullname" value="<?php echo htmlspecialchars($fullname); ?>">
+        </div>
 
-            <?php if ($error) : ?>
-                <div class="error"><?php echo htmlspecialchars($error); ?></div>
-            <?php endif; ?>
-            
-            <div class="register-btn">
-                <button type="submit">Register</button>
-            </div>
-            
-            <div class="login-link">
-                <p>Already have an account? <a href="login.php">Login here</a></p>
-            </div>
-        </form>
-    </div>
+        <div class="input-box">
+            <label for="username">Username:</label>
+            <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+        </div>
+
+        <div class="input-box">
+            <label for="email">Email:</label>
+            <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
+        </div>
+
+        <div class="input-box">
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+        </div>
+
+        <?php if ($error): ?>
+            <div class="error"><?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
+
+        <div class="register-btn">
+            <button type="submit">Register</button>
+        </div>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="login.php">Login here</a></p>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

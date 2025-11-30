@@ -55,7 +55,7 @@ header{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: fit-content;
+    height: 85vh;
 
     padding: 20px 0;
 }

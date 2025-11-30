@@ -1,47 +1,57 @@
 <?php
 session_start();
-include 'db.php';           
-include 'navbarUser.php';  
+include './utils/db.php';
+
+// USER ONLY PAGE
+if (!isset($_SESSION['UserID']) || $_SESSION['UserRole'] !== "User") {
+    header("Location: login.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KenanginKopi - Home</title>
-<link rel="stylesheet" href="./css/homeGuest.css">
+<title>KenanginKopi - User Home</title>
+<link rel="stylesheet" href="./css/homePage.css">
 </head>
+
 <body>
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h2>KenanginKopi</h2>
-                <p>Favourable taste for your mood</p>
 
-                <div class="gridContainer">
-                    <?php
-                    // Ambil semua store dari DB
-                    $sql = "SELECT StoreID, StoreName FROM Store ORDER BY StoreName";
-                    $res = mysqli_query($conn, $sql);
+<?php include './utils/navbarUser.php'; ?>
 
-                    if ($res && mysqli_num_rows($res) > 0) {
-                        while ($row = mysqli_fetch_assoc($res)) {
-                            $sid = htmlspecialchars($row['StoreID']);
-                            $sname = htmlspecialchars($row['StoreName']);
-                            echo '<div class="gridTemplate">';
-                            echo "  <h4>{$sname}</h4>";
-                            echo "  <a class='viewDetailsButton' href='storeDetail.php?storeid={$sid}'>View Details</a>";
-                            echo '</div>';
-                        }
-                    } else {
-                        echo '<p class="no-data">No stores available.</p>';
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>KenanginKopi</h2>
+            <p>Favourable taste for your mood</p>
+
+            <div class="gridContainer">
+                <?php
+                $sql = "SELECT StoreID, StoreName FROM Store ORDER BY StoreName";
+                $res = mysqli_query($conn, $sql);
+
+                if ($res && mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        $sid = htmlspecialchars($row['StoreID']);
+                        $sname = htmlspecialchars($row['StoreName']);
+
+                        echo '<div class="gridTemplate">';
+                        echo "  <h4>{$sname}</h4>";
+                        echo "  <a class='viewDetailsButton' href='storeDetailUser.php?storeid={$sid}'>View Details</a>";
+                        echo '</div>';
                     }
-                    ?>
-                </div>
+                } else {
+                    echo '<p class="no-data">No stores available.</p>';
+                }
+                ?>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-<?php include 'footer.php'; ?>
+<?php include './utils/footer.php'; ?>
+
 </body>
 </html>

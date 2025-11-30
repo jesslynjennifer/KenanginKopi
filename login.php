@@ -1,14 +1,17 @@
 <?php
 session_start();
-include "db.php";
-include "navbarGuest.php";
+unset($_SESSION['logged_in_user']);
+unset($_SESSION['role']);
+unset($_SESSION['username']);
 
+
+include "./utils/db.php";
 $error = "";
 
-// Auto login via cookie (optional)
-if (!isset($_SESSION['logged_in_user']) && isset($_COOKIE['remember_user'])) {
-    $_SESSION['logged_in_user'] = $_COOKIE['remember_user'];
-    header("Location: home.php");
+// Remember me auto-login
+if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
+    $_SESSION['UserID'] = $_COOKIE['remember_user'];
+    header("Location: homeUser.php");
     exit;
 }
 
@@ -16,14 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    $remember = isset($_POST['remember']);
 
-    // Check empty
     if (empty($username) || empty($password)) {
         $error = "Username and password must be filled!";
     } else {
 
-        // Cek username di DB
         $query = "SELECT * FROM Users WHERE UserName = '$username'";
         $result = mysqli_query($conn, $query);
 
@@ -31,30 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $user = mysqli_fetch_assoc($result);
 
-            // Password hashing verification
             if (password_verify($password, $user['UserPassword'])) {
 
-                // Set session
-                $_SESSION['logged_in_user'] = $user['UserID'];
-                $_SESSION['role'] = $user['UserRole'];
-                $_SESSION['username'] = $user['UserName'];
+                // SET SESSION dengan nama konsisten
+                $_SESSION['UserID'] = $user['UserID'];
+                $_SESSION['UserRole'] = $user['UserRole'];
+                $_SESSION['UserName'] = $user['UserName'];
 
-                // Remember me
-                if ($remember) {
-                    setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
-                }
-
-                if ($user['UserRole'] == "Admin") {
-                    header("Location: homeAdmin.php");
-                } else {
-                    header("Location: homeUser.php");
-                }
+                header("Location: " . 
+                    ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
                 exit;
 
             } else {
                 $error = "Wrong password!";
             }
-
         } else {
             $error = "Username not found!";
         }
@@ -62,16 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
+    <?php include "./utils/navbarGuest.php"; ?>
     <main>
         <div class="login-container">
             <form class="login-form" method="POST">

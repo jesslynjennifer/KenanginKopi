@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "db.php";
+include "./utils/db.php";
 
 // CEK LOGIN & ROLE
-if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] != "Customer") {
+if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "User") {
     header("Location: login.php");
     exit;
 }
@@ -32,8 +32,7 @@ if (!$store) {
 
 // AMBIL COFFEE MILIK STORE INI
 $coffeeQuery = "
-    SELECT Coffee.CoffeeID, Coffee.CoffeeName, Coffee.Description, 
-           StoreCoffee.Price
+    SELECT Coffee.CoffeeID, Coffee.CoffeeName, Coffee.Description, StoreCoffee.Price
     FROM StoreCoffee
     INNER JOIN Coffee ON Coffee.CoffeeID = StoreCoffee.CoffeeID
     WHERE StoreCoffee.StoreID = '$storeid'
@@ -49,7 +48,7 @@ $coffeeRes = mysqli_query($conn, $coffeeQuery);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $store['StoreName'] ?> - Coffee List</title>
-    <link rel="stylesheet" href="css/storeDetail.css">
+    <link rel="stylesheet" href="./css/storeDetail.css">
 </head>
 <body>
 
@@ -85,7 +84,7 @@ $coffeeRes = mysqli_query($conn, $coffeeQuery);
 
 </div>
 
-<?php include "footer.php"; ?>
+<?php include "./utils/footer.php"; ?>
 
 </body>
 </html>

@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-image: url("../images/bg_coffee.jpg"); /* ganti sesuai gambar kamu */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    width: 70%;
+    margin: 50px auto;
+    background: #ffffffcc; /* white translucent */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.store-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #5d3a1a;
+    margin-bottom: 10px;
+}
+
+.location {
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    color: #444;
+}
+
+.menu {
+    font-size: 22px;
+    font-weight: 600;
+    color: #5d3a1a;
+    margin-bottom: 15px;
+}
+
+.coffee-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.coffee-card {
+    background: #fdf4ed;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.coffee-card h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #593b1e;
+}
+
+.desc {
+    margin-top: 20px;
+    font-size: 17px;
+    color: #5a5a5a;
+}
+
+.no-data {
+    padding: 20px;
+    background: #fff5ee;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    color: #555;
+}
+
+/* OPTIONAL — Smooth fade animation */
+.coffee-card {
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

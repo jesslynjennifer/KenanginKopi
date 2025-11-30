@@ -8,7 +8,7 @@ CREATE TABLE Users(
     UserName VARCHAR(50) NOT NULL UNIQUE,
     UserEmail VARCHAR(50) NOT NULL UNIQUE,
     UserPassword VARCHAR(100) NOT NULL,
-    UserRole ENUM('Admin', 'Customer') NOT NULL DEFAULT 'Customer'
+    UserRole ENUM('Admin', 'User') NOT NULL DEFAULT 'User'
 );
 
 -- Store table
