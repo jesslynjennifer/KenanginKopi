@@ -23,7 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Username and password must be filled!";
     } else {
 
-        $query = "SELECT * FROM Users WHERE UserName = '$username'";
+        $query = "
+        SELECT * FROM Users 
+        WHERE UserName = '$username'
+        ";
+        
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {

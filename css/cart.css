@@ -1,7 +1,3 @@
-/* ================================
-   CART PAGE STYLE
-================================ */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,7 +5,6 @@ body {
     background: #fafafa;
 }
 
-/* Container */
 .cart-container {
     width: 80%;
     max-width: 1000px;
@@ -20,14 +15,12 @@ body {
     box-shadow: 0 3px 12px rgba(0,0,0,0.15);
 }
 
-/* Heading */
 .cart-container h1 {
     font-size: 28px;
     text-align: center;
     margin-bottom: 25px;
 }
 
-/* Table */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
@@ -47,14 +40,12 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-/* Update Input */
 .cart-table input[type="number"] {
     width: 70px;
     padding: 5px;
     font-size: 14px;
 }
 
-/* Buttons */
 .update-btn, .delete-btn, .pay-btn {
     padding: 8px 14px;
     border: none;
@@ -65,7 +56,6 @@ body {
     transition: 0.2s ease;
 }
 
-/* Update button */
 .update-btn {
     background: #f4a261;
     color: white;
@@ -74,7 +64,6 @@ body {
     background: #e68a3f;
 }
 
-/* Delete button */
 .delete-btn {
     background: #e63946;
     color: white;
@@ -83,7 +72,6 @@ body {
     background: #cc2e3a;
 }
 
-/* Pay button */
 .pay-btn {
     background: #2a9d8f;
     color: white;
@@ -96,14 +84,12 @@ body {
     background: #23867a;
 }
 
-/* Totals */
 .total-box {
     margin-top: 25px;
     font-size: 18px;
     font-weight: bold;
 }
 
-/* No data message */
 .no-coffee {
     text-align: center;
     font-size: 18px;
@@ -111,7 +97,6 @@ body {
     color: #888;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .cart-container {
         width: 95%;
@@ -127,4 +112,23 @@ body {
         text-align: center;
         float: none;
     }
+}
+
+.success-box {
+    background-color: #f7e3c2;  
+    border: 1px solid #e0c199;
+    padding: 15px 20px;
+    border-radius: 10px;
+    width: 70%;
+    margin: 10px auto 20px auto;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #6b3e1d;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.success-box .txid {
+    color: #8a532a;
+    font-weight: bold;
 }

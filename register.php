@@ -10,7 +10,12 @@ $username = "";
 $email = "";
 
 function generateUserID($conn) {
-    $result = mysqli_query($conn, "SELECT UserID FROM Users ORDER BY UserID DESC LIMIT 1");
+$resultValue = "
+    SELECT UserID FROM Users 
+    ORDER BY UserID DESC LIMIT 1
+";
+
+    $result = mysqli_query($conn, $resultValue);
 
     if ($result && mysqli_num_rows($result) == 0) {
         return "U0001";
@@ -56,9 +61,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $safeUser = mysqli_real_escape_string($conn, $username);
         $safeEmail = mysqli_real_escape_string($conn, $email);
 
-        $check = mysqli_query($conn,
-            "SELECT * FROM Users WHERE UserName='$safeUser' OR UserEmail='$safeEmail'"
-        );
+        $checkValue = "
+            SELECT * FROM Users 
+            WHERE UserName='$safeUser' OR UserEmail='$safeEmail
+        ";
+
+        $check = mysqli_query($conn, $checkValue);
 
         if ($check && mysqli_num_rows($check) > 0) {
             $error = "Username or Email already exists!";
