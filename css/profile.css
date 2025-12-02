@@ -1,0 +1,63 @@
+body {
+    font-family: 'Georgia', serif;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    width: 50%;
+    margin: 140px auto;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px 40px;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.profile-box .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    color: #444;
+}
+
+.btn-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    background-color: #c89f73;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.btn:hover {
+    background-color: #b88c5a;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+}

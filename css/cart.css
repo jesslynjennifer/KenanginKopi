@@ -3,6 +3,10 @@ body {
     margin: 0;
     padding: 0;
     background: #fafafa;
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .cart-container {
@@ -91,7 +95,6 @@ body {
 }
 
 .no-coffee {
-    text-align: center;
     font-size: 18px;
     padding: 30px 0;
     color: #888;

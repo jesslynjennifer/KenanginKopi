@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    font-family: "Georgia", serif;
+}
+
+.history-container {
+    width: 65%;
+    margin: 140px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+}
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.empty-box {
+    background: #fdeedc;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.empty-text {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.small {
+    font-size: 14px;
+    margin-top: 2px;
+    color: #444;
+}
+
+.order-btn {
+    display: inline-block;
+    margin-top: 18px;
+    background: #c8946b;
+    padding: 10px 25px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.history-table th {
+    background: #c8946b;
+    color: white;
+    padding: 12px;
+}
+
+.history-table td {
+    background: #fff7ef;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-btn {
+    background: #b07a50;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}

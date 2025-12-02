@@ -9,12 +9,14 @@ if (!isset($_SESSION['UserID'])) {
 
 $coffeeid = $_POST['coffeeid'];
 $storeid = $_POST['storeid'];
+$amount  = isset($_POST['amount']) ? (int)$_POST['amount'] : 1;
 
 $q = "
-    SELECT CoffeeName, CoffeeDesc, Price
-    FROM Coffee 
+    SELECT Coffee.CoffeeName, Coffee.CoffeeDesc, StoreCoffee.Price
+    FROM Coffee
     JOIN StoreCoffee ON Coffee.CoffeeID = StoreCoffee.CoffeeID
-    WHERE Coffee.CoffeeID = '$coffeeid' AND StoreCoffee.StoreID = '$storeid'
+    WHERE Coffee.CoffeeID = '$coffeeid'
+    AND StoreCoffee.StoreID = '$storeid'
 ";
 $res = mysqli_query($conn, $q);
 $coffee = mysqli_fetch_assoc($res);
@@ -27,17 +29,20 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-if (isset($_SESSION['cart'][$coffeeid])) {
-    $_SESSION['cart'][$coffeeid]['qty'] += 1;
-} else {
-    // Kalau belum ada → masukkan item
+if (!isset($_SESSION['cart'][$coffeeid])) {
+
     $_SESSION['cart'][$coffeeid] = [
-        "name" => $coffee['CoffeeName'],
-        "desc" => $coffee['CoffeeDesc'],
-        "price" => $coffee['Price'],
-        "qty" => 1
+        "name"    => $coffee['CoffeeName'],
+        "desc"    => $coffee['CoffeeDesc'],
+        "price"   => $coffee['Price'],
+        "qty"     => $amount,
+        "storeid" => $storeid                 
     ];
+
+} else {
+    $_SESSION['cart'][$coffeeid]['qty'] += $amount;
 }
 
 header("Location: cart.php");
 exit;
+?>
