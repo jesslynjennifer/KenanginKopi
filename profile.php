@@ -27,47 +27,39 @@ if (!$user) {
 </head>
 
 <body>
+    <div class="profile-container">
 
-<?php include "./utils/navbarUser.php"; ?>
+        <h2 class="title">My Profile</h2>
+        <div class="profile-box">
+            <div class="row">
+                <span class="label">User ID</span>
+                <span class="value"><?= htmlspecialchars($user['UserID']); ?></span>
+            </div>
 
-<div class="profile-container">
+            <div class="row">
+                <span class="label">Full Name</span>
+                <span class="value"><?= htmlspecialchars($user['FullName']); ?></span>
+            </div>
 
-    <h2 class="title">My Profile</h2>
+            <div class="row">
+                <span class="label">Username</span>
+                <span class="value"><?= htmlspecialchars($user['UserName']); ?></span>
+            </div>
 
-    <div class="profile-box">
+            <div class="row">
+                <span class="label">Email</span>
+                <span class="value"><?= htmlspecialchars($user['UserEmail']); ?></span>
+            </div>
 
-        <div class="row">
-            <span class="label">User ID</span>
-            <span class="value"><?= htmlspecialchars($user['UserID']); ?></span>
-        </div>
+            <div class="btn-group">
+                <a href="editProfile.php" class="btn full-btn">Edit Profile</a>
+                <a href="history.php" class="btn full-btn">Order History</a>
+                <a href="homeUser.php" class="back-btn">← Back</a>
+            </div>
 
-        <div class="row">
-            <span class="label">Full Name</span>
-            <span class="value"><?= htmlspecialchars($user['FullName']); ?></span>
-        </div>
-
-        <div class="row">
-            <span class="label">Username</span>
-            <span class="value"><?= htmlspecialchars($user['UserName']); ?></span>
-        </div>
-
-        <div class="row">
-            <span class="label">Email</span>
-            <span class="value"><?= htmlspecialchars($user['UserEmail']); ?></span>
-        </div>
-
-        <div class="btn-group">
-
-            <a href="editProfile.php" class="btn full-btn">Edit Profile</a>
-
-            <a href="history.php" class="btn full-btn">Order History</a>
-
-            <a href="homeUser.php" class="back-btn">← Back</a>
         </div>
 
     </div>
-
-</div>
 
 <?php include "./utils/footer.php"; ?>
 

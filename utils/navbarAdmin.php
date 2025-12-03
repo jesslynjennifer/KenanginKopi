@@ -12,7 +12,7 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
         <div class="navbar">
 
             <div class="logo">
-                <a class="company" href="homeAdmin.php">KenanginKopi</a>
+                <a href="homeAdmin.php">KenanginKopi</a>
             </div>
 
             <div class="navbarDate">
@@ -21,20 +21,21 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
 
             <div class="navbarMenu">
 
-                <div class="dropdown">
-                    <button class="dropbtn">Manage ▼</button>
-                    <div class="dropdown-content">
-                        <a href="manage_user.php">Manage User</a>
-                        <a href="manage_store.php">Manage Store</a>
-                        <a href="manage_coffee.php">Manage Coffee</a>
-                    </div>
+            <div class="dropdown">
+                <button class="dropbtn">Manage ▾</button>
+
+                <div class="dropdown-content">
+                    <a href="manageUser.php">Manage User</a>
+                    <a href="manageStore.php">Manage Store</a>
+                    <a href="manageCoffee.php">Manage Coffee</a>
                 </div>
+            </div>
 
                 <a class="username" href="profile.php">
                     <?php echo $_SESSION['UserName']; ?>
                 </a>
 
-                <a class="logoutBtn" href="logout.php">Logout</a>
+                <a class="logout-btn" href="logout.php">Logout</a>
             </div>
         </div>
     </nav>

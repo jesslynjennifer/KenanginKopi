@@ -12,7 +12,7 @@ body{
 
 header{
     top: 0;
-    background-color: rgb(255, 255, 255, 0.95); /* 0.8 itu buat transparansi, ilangin aja kalo gamau */
+    background-color: rgb(255, 255, 255, 0.95);
     
 }
 
@@ -25,7 +25,7 @@ header{
     color: rgb(101, 79, 60);
 }
 
-.logo a{
+.logo a {
     text-decoration: none;
     color: rgb(101, 79, 60);   
     font-weight: bold;
@@ -39,7 +39,7 @@ header{
 }
 
 
-.loginBtn a{
+.login-btn a{
     text-decoration: none;
     font-weight: bold;
     border: none;
@@ -50,15 +50,7 @@ header{
     font-size: 20px;
 }
 
-.usernameNavbar {
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: bold;
-    color: rgb(101, 79, 60);    
-    font-size: 18px;
-}
-
-.logoutBtn {
+.logout-btn {
     text-decoration: none;
     font-weight: bold;
     border: none;
@@ -67,4 +59,65 @@ header{
     color: whitesmoke;
     padding: 10px 15px;
     font-size: 20px;
+}
+
+.navbarMenu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbarMenu a {
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    color: rgb(101, 79, 60);    
+    font-size: 18px;
+}
+
+/* Dropdown wrapper */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Main button */
+.dropbtn {
+    background-color: #b58968;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 180px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    z-index: 99;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f2e4d7;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #a17655;
 }

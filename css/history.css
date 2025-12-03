@@ -1,9 +1,6 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('../images/background.jpeg');
-    background-size: cover;
-    background-position: center;
     font-family: "Georgia", serif;
 }
 

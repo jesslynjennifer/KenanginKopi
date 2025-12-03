@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $checkValue = "
             SELECT * FROM Users 
-            WHERE UserName='$safeUser' OR UserEmail='$safeEmail
+            WHERE UserName='$safeUser' OR UserEmail='$safeEmail'
         ";
 
         $check = mysqli_query($conn, $checkValue);

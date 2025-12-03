@@ -20,11 +20,11 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "User") {
             </div>
 
             <div class="navbarMenu">
-                <a class="usernameNavbar" href="profile.php">
+                <a class= href= "profile.php">
                     <?php echo $_SESSION['UserName']; ?>
                 </a>
 
-                <a class="logoutBtn" href="logout.php">Logout</a>
+                <a class="logout-btn" href="logout.php">Logout</a>
             </div>
         </div>
     </nav>
