@@ -75,13 +75,18 @@ header{
     font-size: 18px;
 }
 
-/* Dropdown wrapper */
+.admin-username {
+    margin-right: 20px;
+    font-weight: bold;
+    color: rgb(101, 79, 60);    
+    font-size: 18px;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Main button */
 .dropbtn {
     background-color: #b58968;
     color: white;

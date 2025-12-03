@@ -30,10 +30,10 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
                     <a href="manageCoffee.php">Manage Coffee</a>
                 </div>
             </div>
-
-                <a class="username" href="profile.php">
-                    <?php echo $_SESSION['UserName']; ?>
-                </a>
+            
+            <div class="admin-username">
+                <?php echo $_SESSION['UserName']; ?>
+            </div>
 
                 <a class="logout-btn" href="logout.php">Logout</a>
             </div>

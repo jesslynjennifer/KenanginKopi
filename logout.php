@@ -1,12 +1,13 @@
 <?php
 session_start();
 
-unset($_SESSION['UserID']);
-unset($_SESSION['Username']);
-unset($_SESSION['Role']);
-unset($_SESSION['FullName']);
-unset($_SESSION['Email']);
+session_unset();
+session_destroy();
+
+if (isset($_COOKIE['remember_user'])) {
+    setcookie('remember_user', '', time() - 3600, "/"); 
+}
 
 header("Location: homeGuest.php");
-exit();
+exit;
 ?>

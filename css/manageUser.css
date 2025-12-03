@@ -1,0 +1,114 @@
+body {
+    background: url('../images/background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Georgia', serif;
+}
+
+.container {
+    width: 75%;
+    margin: 120px auto;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8B5A2B;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    background: white;
+}
+
+.user-table th {
+    background: #d2a679;
+    padding: 12px;
+    text-align: left;
+    color: white;
+    font-size: 17px;
+}
+
+.user-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.delete-btn {
+    background: #c54444;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: #a83232;
+}
+body {
+    background: url('../images/background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Georgia', serif;
+}
+
+.container {
+    width: 75%;
+    margin: 120px auto;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8B5A2B;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    background: white;
+}
+
+.user-table th {
+    background: #d2a679;
+    padding: 12px;
+    text-align: left;
+    color: white;
+    font-size: 17px;
+}
+
+.user-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.delete-btn {
+    background: #c54444;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: #a83232;
+}

@@ -9,9 +9,21 @@ include "./utils/db.php";
 $error = "";
 
 if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
-    $_SESSION['UserID'] = $_COOKIE['remember_user'];
-    header("Location: homeUser.php");
-    exit;
+    $uid = $_COOKIE['remember_user'];
+    $q = "SELECT * FROM Users WHERE UserID = '$uid'";
+    $r = mysqli_query($conn, $q);
+
+    if (mysqli_num_rows($r) == 1) {
+        $user = mysqli_fetch_assoc($r);
+
+        $_SESSION['UserID'] = $user['UserID'];
+        $_SESSION['UserRole'] = $user['UserRole'];
+        $_SESSION['UserName'] = $user['UserName'];
+
+        header("Location: " . 
+            ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+        exit;
+    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,6 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['UserID'] = $user['UserID'];
                 $_SESSION['UserRole'] = $user['UserRole'];
                 $_SESSION['UserName'] = $user['UserName'];
+
+                    if (isset($_POST['remember'])) {
+                        setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
+                    }
 
                 header("Location: " . 
                     ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
