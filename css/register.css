@@ -13,10 +13,12 @@ body {
     min-height: 85vh;
     margin-top: 40px;
     margin-bottom: 40px;
+    color: rgb(101, 79, 60);
 }
 
 .register-container h2 {
     margin-bottom: 20px;
+    font-size: 35px;
 }
 
 .register-form {
@@ -53,10 +55,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-}
-
-.register-btn button:hover {
-    background-color: rgb(216, 166, 122);
+    font-weight: bold;
 }
 
 .error {

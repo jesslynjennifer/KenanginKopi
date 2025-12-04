@@ -13,10 +13,12 @@ body {
     min-height: 85vh;
     margin-top: 40px;
     margin-bottom: 40px;
+    color: rgb(101, 79, 60);
 }
 
 .login-container h2 {
     margin-bottom: 20px;
+    font-size: 35px;
 }
 
 .login-form {
@@ -49,6 +51,7 @@ body {
     align-items: center;
     margin-top: 35px;
     margin-bottom: 15px;
+    color: rgb(101, 79, 60);
 }
 
 .login-btn button{
@@ -60,10 +63,6 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-}
-
-.login-btn button:hover {
-    background-color: rgb(216, 166, 122)
 }
 
 .error {

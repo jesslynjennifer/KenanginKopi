@@ -8,7 +8,7 @@ include './utils/db.php';
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KenanginKopi - Home</title>
-<link rel="stylesheet" href="./css/homePage.css">
+<link rel="stylesheet" href="./css/homeGuest.css">
 </head>
 
 <body>

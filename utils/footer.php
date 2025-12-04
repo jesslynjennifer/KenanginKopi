@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/homeGuest.css">
+<link rel="stylesheet" href="./css/footer.css">
 
 <footer>
     <div class="footer">
