@@ -22,6 +22,7 @@ CREATE TABLE Store(
 CREATE TABLE Coffee(
     CoffeeID CHAR(5) PRIMARY KEY,
     CoffeeName VARCHAR(50) NOT NULL,
+    CoffeePrice INT NOT NULL,
     CoffeeDesc VARCHAR(100) NOT NULL
 );
 
