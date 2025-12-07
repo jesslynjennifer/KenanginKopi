@@ -3,27 +3,55 @@
 session_start();
 include "./utils/db.php";
 
-// if (!isset($_SESSION['UserID'])) {
-//     header("Location: login.php");
-//     exit;
-// }
 
-if (!isset($_POST['StoreID'])) {
-    echo "Store not found.";
+if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
+    header("Location: login.php");
     exit;
 }
 
-$StoreID = $_POST['StoreID'];
+if (!isset($_GET['StoreID'])) {
+    header("Location: manageStore.php");
+    exit;
+}
 
-//query buat tampilin data store
-$storeName = $_POST['StoreName'];
-$storeQuery = "SELECT * FROM Store WHERE StoreID = '$StoreID'";
-$storeResult = mysqli_query($conn, $storeQuery);
-$store = mysqli_fetch_assoc($storeResult);
+$StoreID_raw = $_GET['StoreID'];
+$storeName = 'Unknown Store';
+$stmt_store = mysqli_prepare($conn, "SELECT StoreName FROM Store WHERE StoreID = ?");
 
+if ($stmt_store) {
+    mysqli_stmt_bind_param($stmt_store, "s", $StoreID_raw);
+    mysqli_stmt_execute($stmt_store);
+    $storeResult = mysqli_stmt_get_result($stmt_store);
+    $store = mysqli_fetch_assoc($storeResult);
+    if ($store) {
+        $storeName = htmlspecialchars($store['StoreName']);
+    }
+    mysqli_stmt_close($stmt_store);
+}
 
-$coffeeQuery = "SELECT * FROM Coffee WHERE StoreID = '$StoreID'";
-$coffeeResult = mysqli_query($conn, $coffeeQuery);
+$coffeeQuery = "
+    SELECT 
+        c.CoffeeID, 
+        c.CoffeeName, 
+        sc.Price, 
+        c.CoffeeDesc 
+    FROM 
+        Coffee c
+    JOIN 
+        StoreCoffee sc ON c.CoffeeID = sc.CoffeeID
+    WHERE 
+        sc.StoreID = ?
+    ORDER BY 
+        c.CoffeeID
+";
+$coffeeResult = false;
+$stmt_coffee = mysqli_prepare($conn, $coffeeQuery);
+
+if ($stmt_coffee) {
+    mysqli_stmt_bind_param($stmt_coffee, "s", $StoreID_raw);
+    mysqli_stmt_execute($stmt_coffee);
+    $coffeeResult = mysqli_stmt_get_result($stmt_coffee);
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,21 +59,20 @@ $coffeeResult = mysqli_query($conn, $coffeeQuery);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Coffee Page</title>
-</head>
+    <title>Manage Coffee Page - <?= $storeName ?></title>
+    </head>
 <body>
 
     <header>
-        <?php
-        // include 'KenanginKopi\utils\navbarAdmin.php';
-        ?>
+        <?php include "./utils/navbarAdmin.php"; ?>
     </header>
 
-    <main>
-        <h1>Manage Coffee for </h1>
-        <a href="addCoffee.php">Add Coffee</a>
-
-        <table>
+    <main class="container">
+        <h1>Manage Coffee for **<?= $storeName ?>**</h1>
+        
+        <a href="addCoffee.php?StoreID=<?= urlencode($StoreID_raw) ?>" class="add-btn">Add New Coffee to this Store</a>
+        
+        <table class="coffee-table">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -54,22 +81,42 @@ $coffeeResult = mysqli_query($conn, $coffeeQuery);
                 <th>Action</th>
             </tr>
 
-            <?php while ($row = $coffeeResult->fetch_assoc()) : ?>
+            <?php if ($coffeeResult && mysqli_num_rows($coffeeResult) > 0): ?>
+                <?php while ($row = mysqli_fetch_assoc($coffeeResult)) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['CoffeeID']); ?></td>
+                        <td><?= htmlspecialchars($row['CoffeeName']); ?></td>
+                        <td>Rp <?= number_format($row['Price'], 0, ',', '.'); ?></td>
+                        <td><?= htmlspecialchars($row['CoffeeDesc']); ?></td>
+                        <td>
+                            <form method="POST" action="deleteCoffee.php" style="display:inline;">
+                                <input type="hidden" name="coffeeid" value="<?= htmlspecialchars($row['CoffeeID']); ?>">
+                                <input type="hidden" name="storeid" value="<?= htmlspecialchars($StoreID_raw); ?>">
+                                
+                                <button type="submit" 
+                                        onclick="return confirm('Are you sure want to remove **<?= $row['CoffeeName']; ?>** from **<?= $storeName ?>**?');"
+                                        class="delete-btn">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
                 <tr>
-                    <td><?= $row['CoffeeID']; ?></td>
-                    <td><?= $row['CoffeeName']; ?></td>
-                    <td><?= $row['CoffeePrice']; ?></td>
-                    <td><?= $row['CoffeeDescription']; ?></td>
-                    <td>
-                        <a href="deleteCoffee.php?coffeeid=<?= $row['CoffeeID']; ?>&storeid=<?= $storeid; ?>"
-                        onclick="return confirm('Are you sure want to delete this coffee?');">
-                            Delete
-                        </a>
-                    </td>
+                    <td colspan="5">No coffee found in this store.</td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endif; ?>
         </table>
+        
+        <?php 
+        // 5. Tutup Prepared Statement di akhir 
+        if ($stmt_coffee) {
+            mysqli_stmt_close($stmt_coffee);
+        }
+        ?>
+        
+        <a href="manageStore.php" class="back-btn"><< Back to Manage Stores</a>
     </main>
-    
 </body>
 </html>
