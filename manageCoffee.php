@@ -9,12 +9,12 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
     exit;
 }
 
-if (!isset($_GET['StoreID'])) {
+if (!isset($_GET['storeid'])) {
     header("Location: manageStore.php");
     exit;
 }
 
-$StoreID_raw = $_GET['StoreID'];
+$StoreID_raw = $_GET['storeid'];
 $storeName = 'Unknown Store';
 $stmt_store = mysqli_prepare($conn, "SELECT StoreName FROM Store WHERE StoreID = ?");
 
@@ -110,7 +110,6 @@ if ($stmt_coffee) {
         </table>
         
         <?php 
-        // 5. Tutup Prepared Statement di akhir 
         if ($stmt_coffee) {
             mysqli_stmt_close($stmt_coffee);
         }
