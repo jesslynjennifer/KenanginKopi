@@ -1,5 +1,5 @@
 body {
-    background: url('../images/background.jpeg');
+    background: url('../assets/');
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Georgia', serif;
@@ -55,12 +55,7 @@ body {
 .delete-btn:hover {
     background: #a83232;
 }
-body {
-    background: url('../images/background.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: 'Georgia', serif;
-}
+
 
 .container {
     width: 75%;
