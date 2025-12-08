@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Register - KenanginKopi</title>
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="./css/register.css">
 </head>
 <body>
 
