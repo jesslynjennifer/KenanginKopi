@@ -133,7 +133,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
 
             <button type="submit">Add</button> <br>
 
-            <a href="manageCoffee.php?StoreID=<?= urlencode($StoreID ?? '') ?>"><< back</a>
+            <a href="storeDetailAdmin.php?storeid=<?= urlencode($StoreID ?? '') ?>"><< back</a>
         </form>
         
         <?php if (!empty($message)): ?>
