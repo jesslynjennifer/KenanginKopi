@@ -20,7 +20,7 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "User") {
             </div>
 
             <div class="navbarMenu">
-                <a class= href= "profile.php">
+                <a href= "profile.php">
                     <?php echo $_SESSION['UserName']; ?>
                 </a>
 
