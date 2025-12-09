@@ -28,7 +28,7 @@ if (!$store) {
 }
 
 $coffeeQuery = "
-    SELECT StoreCoffee.CoffeeID, Coffee.CoffeeName, StoreCoffee.Price
+    SELECT StoreCoffee.CoffeeID, Coffee.CoffeeName, StoreCoffee.Price, Coffee.CoffeeDesc
     FROM StoreCoffee
     JOIN Coffee ON Coffee.CoffeeID = StoreCoffee.CoffeeID
     WHERE StoreCoffee.StoreID = '$storeid'
