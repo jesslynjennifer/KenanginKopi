@@ -44,7 +44,7 @@ $result = mysqli_query($conn, $query);
             <td><?= htmlspecialchars($row['StoreLocation']); ?></td>
 
             <td>
-                <a href="storeDetailAdmin.php?storeid=<?= $row['StoreID']; ?>" class="manage-btn">Manage</a>
+                <a href="manageCoffee.php?storeid=<?= $row['StoreID']; ?>" class="manage-btn">Manage</a>
             </td>
 
             <td>

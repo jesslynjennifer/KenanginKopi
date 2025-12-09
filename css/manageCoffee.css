@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.add-btn {
+    display: flex;
+    padding: 10px 16px;
+    background: #c69c6d;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+    margin-bottom: 20px;
+}
+
+.add-btn:hover {
+    background: #a07a52;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    color: #c69c6d;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+.coffee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+}
+
+.coffee-table th {
+    background: #c69c6d;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.coffee-table td {
+    padding: 12px;
+    font-size: 14px;
+    color: #444;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.coffee-table tr:hover {
+    background: #f1f7ff;
+}
+
+.delete-btn {
+    padding: 8px 14px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.delete-btn:hover {
+    background: #b02a37;
+}

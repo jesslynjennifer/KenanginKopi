@@ -60,6 +60,7 @@ if ($stmt_coffee) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Coffee Page - <?= $storeName ?></title>
+    <link rel="stylesheet" href="css/manageCoffee.css">
     </head>
 <body>
 
@@ -70,7 +71,7 @@ if ($stmt_coffee) {
     <main class="container">
         <h1>Manage Coffee for **<?= $storeName ?>**</h1>
         
-        <a href="addCoffee.php?StoreID=<?= urlencode($StoreID_raw) ?>" class="add-btn">Add New Coffee to this Store</a>
+        <a href="addCoffee.php?StoreID=<?= urlencode($StoreID_raw) ?>" class="add-btn">Add Coffee</a>
         
         <table class="coffee-table">
             <tr>
@@ -115,7 +116,7 @@ if ($stmt_coffee) {
         }
         ?>
         
-        <a href="manageStore.php" class="back-btn"><< Back to Manage Stores</a>
+        <a href="manageStore.php" class="back-btn">← Back to Manage Stores</a>
     </main>
 </body>
 </html>
