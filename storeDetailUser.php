@@ -47,51 +47,54 @@ $coffeeRes = mysqli_query($conn, $coffeeQuery);
 </head>
 
 <body>
+    <header>
+        <nav>
+            <?php include "./utils/navbarUser.php"; ?>
+        </nav>
+    </header>
 
-<?php include "./utils/navbarUser.php"; ?>
-
-<div class="container">
-
-    <div class="header-row">
-        <h2 class="store-title"><?= htmlspecialchars($store['StoreName']); ?></h2>
-        <a href="cart.php" class="cart-btn">Cart</a>
-    </div>
-
-    <p class="location">Location: <?= htmlspecialchars($store['StoreLocation']); ?></p>
-    <h3 class="menu-title">Menu:</h3>
-
-    <div class="coffee-list">
-        <?php while ($row = mysqli_fetch_assoc($coffeeRes)) : ?>
-            <div class="coffee-card">
-
-                <h3 class="coffee-name">
-                    <?= htmlspecialchars($row['CoffeeName']); ?> 
-                    - Rp <?= number_format($row['Price'], 0, ',', '.'); ?>
-                </h3>
-
-                <p class="desc"><?= htmlspecialchars($row['CoffeeDesc']); ?></p>
-
-                <form action="addToCart.php" method="POST" class="cart-form">
-                    <label class="amount-label">Amount:</label>
-                    <input type="number" name="amount" min="1" value="1" class="amount-input">
-
-                    <input type="hidden" name="coffeeid" value="<?= $row['CoffeeID']; ?>">
-                    <input type="hidden" name="storeid" value="<?= $storeid; ?>">
-
-                    <button class="btn-add">Add to Cart</button>
-                </form>
+    <main>
+        <div class="container">
+            <div class="header-row">
+                <h2 class="store-title"><?= htmlspecialchars($store['StoreName']); ?></h2>
+                <a href="cart.php" class="cart-btn">Cart</a>
             </div>
-        <?php endwhile; ?>
+        
+            <p class="location">Location: <?= htmlspecialchars($store['StoreLocation']); ?></p>
+            <h3 class="menu-title">Menu:</h3>
+        
+            <div class="coffee-list">
+                <?php while ($row = mysqli_fetch_assoc($coffeeRes)) : ?>
+                    <div class="coffee-card">
+        
+                        <h3 class="coffee-name">
+                            <?= htmlspecialchars($row['CoffeeName']); ?> 
+                            - Rp <?= number_format($row['Price'], 0, ',', '.'); ?>
+                        </h3>
+        
+                        <p class="desc"><?= htmlspecialchars($row['CoffeeDesc']); ?></p>
+        
+                        <form action="addToCart.php" method="POST" class="cart-form">
+                            <label class="amount-label">Amount:</label>
+                            <input type="number" name="amount" min="1" value="1" class="amount-input">
+        
+                            <input type="hidden" name="coffeeid" value="<?= $row['CoffeeID']; ?>">
+                            <input type="hidden" name="storeid" value="<?= $storeid; ?>">
+        
+                            <button class="btn-add">Add to Cart</button>
+                        </form>
+                    </div>
+                <?php endwhile; ?>
+        
+                <?php if (mysqli_num_rows($coffeeRes) == 0): ?>
+                    <p class="no-data">No coffee available in this store.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </main>
 
-        <?php if (mysqli_num_rows($coffeeRes) == 0): ?>
-            <p class="no-data">No coffee available in this store.</p>
-        <?php endif; ?>
-
-    </div>
-
-</div>
-
-<?php include "./utils/footer.php"; ?>
-
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 </body>
 </html>

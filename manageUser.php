@@ -19,42 +19,44 @@ $res = mysqli_query($conn, $query);
 </head>
 <body>
 
-<?php include "./utils/navbarAdmin.php"; ?>
+    <?php include "./utils/navbarAdmin.php"; ?>
 
-<div class="container">
+    <main>
+            <div class="container">
 
-    <h2 class="title">Manage User</h2>
+        <h2 class="title">Manage User</h2>
 
-    <table class="user-table">
-        <tr>
-            <th>UserID</th>
-            <th>Full Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-
-        <?php while ($u = mysqli_fetch_assoc($res)) : ?>
+        <table class="user-table">
             <tr>
-                <td><?= htmlspecialchars($u['UserID']); ?></td>
-                <td><?= htmlspecialchars($u['FullName']); ?></td>
-                <td><?= htmlspecialchars($u['UserName']); ?></td>
-                <td><?= htmlspecialchars($u['UserEmail']); ?></td>
-
-                <td>
-                    <form method="POST" action="deleteUser.php">
-                        <input type="hidden" name="userid" value="<?= $u['UserID'] ?>">
-                        <button type="submit" class="delete-btn">Delete</button>
-                    </form>
-                </td>
+                <th>UserID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
             </tr>
-        <?php endwhile; ?>
 
-    </table>
+            <?php while ($u = mysqli_fetch_assoc($res)) : ?>
+                <tr>
+                    <td><?= htmlspecialchars($u['UserID']); ?></td>
+                    <td><?= htmlspecialchars($u['FullName']); ?></td>
+                    <td><?= htmlspecialchars($u['UserName']); ?></td>
+                    <td><?= htmlspecialchars($u['UserEmail']); ?></td>
 
-</div>
+                    <td>
+                        <form method="POST" action="deleteUser.php">
+                            <input type="hidden" name="userid" value="<?= $u['UserID'] ?>">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
 
-<?php include "./utils/footer.php"; ?>
+        </table>
+
+    </div>
+    </main>
+
+    <?php include "./utils/footer.php"; ?>
 
 </body>
 </html>

@@ -156,6 +156,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
         </div>
     </main>
 
-    <footer><?php include "./utils/footer.php"; ?></footer>
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 </body>
 </html>

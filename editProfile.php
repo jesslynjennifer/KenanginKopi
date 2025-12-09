@@ -83,34 +83,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <header>
+        <nav>
+            <?php include "./utils/navbarUser.php"; ?>
+        </nav>
+    </header>
 
-<?php include "./utils/navbarUser.php"; ?>
+    <main>
+        <div class="profile-container">
+            <h2 class="title">Edit Profil</h2>
+        
+            <?php if ($error): ?>
+                <p class="error"><?= $error ?></p>
+            <?php endif; ?>
+        
+            <form method="POST" class="profile-form">
+                <label>Username:</label>
+                <input type="text" name="username" value="<?= htmlspecialchars($username) ?>">
+        
+                <label>Email:</label>
+                <input type="text" name="email" value="<?= htmlspecialchars($email) ?>">
+        
+                <button class="save-btn" type="submit">Save</button>
+            </form>
+        
+            <a href="profile.php" class="back-btn">← Back</a>
+        </div>
+    </main>
 
-<div class="profile-container">
-
-    <h2 class="title">Edit Profil</h2>
-
-    <?php if ($error): ?>
-        <p class="error"><?= $error ?></p>
-    <?php endif; ?>
-
-    <form method="POST" class="profile-form">
-
-        <label>Username:</label>
-        <input type="text" name="username" value="<?= htmlspecialchars($username) ?>">
-
-        <label>Email:</label>
-        <input type="text" name="email" value="<?= htmlspecialchars($email) ?>">
-
-        <button class="save-btn" type="submit">Save</button>
-
-    </form>
-
-    <a href="profile.php" class="back-btn">← Back</a>
-
-</div>
-
-<?php include "./utils/footer.php"; ?>
-
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 </body>
 </html>

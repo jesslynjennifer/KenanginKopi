@@ -18,40 +18,44 @@ if (!isset($_SESSION['UserID']) || $_SESSION['UserRole'] !== "Admin") {
 </head>
 
 <body>
+    <header>
+        <nav>
+            <?php include "./utils/navbarAdmin.php"; ?>
+        </nav>
+    </header>
 
-<?php include './utils/navbarAdmin.php'; ?>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>KenanginKopi</h2>
+                <p>Favourable taste for your mood</p>
 
-<main>
-    <section class="hero">
-        <div class="hero-content">
-            <h2>KenanginKopi</h2>
-            <p>Favourable taste for your mood</p>
+                <div class="gridContainer">
+                    <?php
+                    $sql = "SELECT StoreID, StoreName FROM Store ORDER BY StoreName";
+                    $res = mysqli_query($conn, $sql);
 
-            <div class="gridContainer">
-                <?php
-                $sql = "SELECT StoreID, StoreName FROM Store ORDER BY StoreName";
-                $res = mysqli_query($conn, $sql);
+                    if ($res && mysqli_num_rows($res) > 0) {
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            $sid = htmlspecialchars($row['StoreID']);
+                            $sname = htmlspecialchars($row['StoreName']);
 
-                if ($res && mysqli_num_rows($res) > 0) {
-                    while ($row = mysqli_fetch_assoc($res)) {
-                        $sid = htmlspecialchars($row['StoreID']);
-                        $sname = htmlspecialchars($row['StoreName']);
-
-                        echo '<div class="gridTemplate">';
-                        echo "  <h4>{$sname}</h4>";
-                        echo "  <a class='viewDetailsButton' href='storeDetailAdmin.php?storeid={$sid}'>View Details</a>";
-                        echo '</div>';
+                            echo '<div class="gridTemplate">';
+                            echo "  <h4>{$sname}</h4>";
+                            echo "  <a class='viewDetailsButton' href='storeDetailAdmin.php?storeid={$sid}'>View Details</a>";
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p class="no-data">No stores available.</p>';
                     }
-                } else {
-                    echo '<p class="no-data">No stores available.</p>';
-                }
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 
-<?php include './utils/footer.php'; ?>
-
+    <footer>
+        <?php include './utils/footer.php'; ?>
+    </footer>
 </body>
 </html>

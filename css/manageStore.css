@@ -1,6 +1,15 @@
 body {
-    font-family: Arial, sans-serif;
-    background: rgba(255,255,255,0.9);
+    min-height: 100vh;
+    background: url("../assets/background.jpeg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px 40px;
 }
 
 .container {
@@ -49,7 +58,7 @@ body {
 
 .store-table td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border: 0.5px solid #ddd;
 }
 
 .manage-btn {
@@ -65,6 +74,8 @@ body {
 }
 
 .delete-btn {
+    display: flex;
+    justify-content: center;
     background: #cd4c4c;
     padding: 8px 14px;
     color: white;

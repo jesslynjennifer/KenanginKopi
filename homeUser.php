@@ -18,7 +18,11 @@ if (!isset($_SESSION['UserID']) || $_SESSION['UserRole'] !== "User") {
 </head>
 
 <body>
-    <?php include './utils/navbarUser.php'; ?>
+    <header>
+        <nav>
+            <?php include "./utils/navbarUser.php"; ?>
+        </nav>
+    </header>
 
     <main>
         <section class="hero">
@@ -49,8 +53,9 @@ if (!isset($_SESSION['UserID']) || $_SESSION['UserRole'] !== "User") {
             </div>
         </section>
     </main>
-
-    <?php include './utils/footer.php'; ?>
-
+    
+    <footer>
+        <?php include './utils/footer.php'; ?>
+    </footer>
 </body>
 </html>

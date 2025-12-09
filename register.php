@@ -106,46 +106,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./css/register.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <?php include "./utils/navbarGuest.php"; ?>
+        </nav>
+    </header>
 
-<?php include "./utils/navbarGuest.php"; ?>
-
-<div class="register-container">
-    <form class="register-form" method="POST" novalidate>
-        <h2>Register</h2>
-
-        <div class="input-box">
-            <label for="fullname">Full Name:</label>
-            <input type="text" name="fullname" value="<?php echo htmlspecialchars($fullname); ?>">
+    <main>
+        <div class="register-container">
+            <form class="register-form" method="POST" novalidate>
+                <h2>Register</h2>
+    
+                <div class="input-box">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" name="fullname" value="<?php echo htmlspecialchars($fullname); ?>">
+                </div>
+    
+                <div class="input-box">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                </div>
+    
+                <div class="input-box">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
+                </div>
+    
+                <div class="input-box">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password">
+                </div>
+    
+                <?php if ($error): ?>
+                    <div class="error"><?php echo htmlspecialchars($error); ?></div>
+                <?php endif; ?>
+    
+                <div class="register-btn">
+                    <button type="submit">Register</button>
+                </div>
+    
+                <div class="login-link">
+                    <p>Already have an account? <a href="login.php">Login here</a></p>
+                </div>
+            </form>
         </div>
+    </main>
 
-        <div class="input-box">
-            <label for="username">Username:</label>
-            <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
-        </div>
-
-        <div class="input-box">
-            <label for="email">Email:</label>
-            <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
-        </div>
-
-        <div class="input-box">
-            <label for="password">Password:</label>
-            <input type="password" name="password">
-        </div>
-
-        <?php if ($error): ?>
-            <div class="error"><?php echo htmlspecialchars($error); ?></div>
-        <?php endif; ?>
-
-        <div class="register-btn">
-            <button type="submit">Register</button>
-        </div>
-
-        <div class="login-link">
-            <p>Already have an account? <a href="login.php">Login here</a></p>
-        </div>
-    </form>
-</div>
-
+    <footer>
+        <?php include './utils/footer.php'; ?>
+    </footer>
 </body>
 </html>

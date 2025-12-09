@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = trim($_POST["name"]);
     $location = trim($_POST["location"]);
 
-    // Validation
     if (empty($name)) {
         $error = "Store name must be filled!";
     } elseif (str_word_count($name) < 2) {
@@ -67,46 +66,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
+    <header>
+        <nav>
+            <?php include "./utils/navbarAdmin.php"; ?>
+        </nav>
+    </header>
 
-<?php include "./utils/navbarAdmin.php"; ?>
+    <main>
+        <div class="add-container">
+            <h2 class="title">Add Store</h2>
 
-<div class="add-container">
+            <form method="POST" class="add-form">
+                <div class="input-box">
+                    <label>Store Name:</label>
+                    <input type="text" name="name" placeholder="Enter store name">
+                </div>
 
-    <h2 class="title">Add Store</h2>
+                <div class="input-box">
+                    <label>Store Location:</label>
+                    <select name="location">
+                        <option value="">– Choose Location –</option>
+                        <option value="Jakarta">Jakarta</option>
+                        <option value="Bandung">Bandung</option>
+                        <option value="Surabaya">Surabaya</option>
+                        <option value="Yogyakarta">Yogyakarta</option>
+                        <option value="Medan">Medan</option>
+                        <option value="Bali">Bali</option>
+                    </select>
+                </div>
 
-    <form method="POST" class="add-form">
+                <?php if ($error): ?>
+                    <p class="error"><?= $error ?></p>
+                <?php endif; ?>
 
-        <div class="input-box">
-            <label>Store Name:</label>
-            <input type="text" name="name" placeholder="Enter store name">
+                <button type="submit" class="add-btn">Add Store</button>
+
+                <a href="manageStore.php" class="back-btn">← Back</a>
+            </form>
         </div>
+    </main>
 
-        <div class="input-box">
-            <label>Store Location:</label>
-            <select name="location">
-                <option value="">– Choose Location –</option>
-                <option value="Jakarta">Jakarta</option>
-                <option value="Bandung">Bandung</option>
-                <option value="Surabaya">Surabaya</option>
-                <option value="Yogyakarta">Yogyakarta</option>
-                <option value="Medan">Medan</option>
-                <option value="Bali">Bali</option>
-            </select>
-        </div>
-
-        <?php if ($error): ?>
-            <p class="error"><?= $error ?></p>
-        <?php endif; ?>
-
-        <button type="submit" class="add-btn">Add Store</button>
-
-        <a href="manageStore.php" class="back-btn">← Back</a>
-
-    </form>
-
-</div>
-
-<?php include "./utils/footer.php"; ?>
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 
 </body>
 </html>

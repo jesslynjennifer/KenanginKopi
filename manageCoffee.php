@@ -3,7 +3,6 @@
 session_start();
 include "./utils/db.php";
 
-
 if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
     header("Location: login.php");
     exit;
@@ -16,8 +15,8 @@ if (!isset($_GET['storeid'])) {
 
 $StoreID_raw = $_GET['storeid'];
 $storeName = 'Unknown Store';
-$stmt_store = mysqli_prepare($conn, "SELECT StoreName FROM Store WHERE StoreID = ?");
 
+$stmt_store = mysqli_prepare($conn, "SELECT StoreName FROM Store WHERE StoreID = ?");
 if ($stmt_store) {
     mysqli_stmt_bind_param($stmt_store, "s", $StoreID_raw);
     mysqli_stmt_execute($stmt_store);
@@ -44,9 +43,9 @@ $coffeeQuery = "
     ORDER BY 
         c.CoffeeID
 ";
+
 $coffeeResult = false;
 $stmt_coffee = mysqli_prepare($conn, $coffeeQuery);
-
 if ($stmt_coffee) {
     mysqli_stmt_bind_param($stmt_coffee, "s", $StoreID_raw);
     mysqli_stmt_execute($stmt_coffee);
@@ -61,18 +60,19 @@ if ($stmt_coffee) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Coffee Page - <?= $storeName ?></title>
     <link rel="stylesheet" href="css/manageCoffee.css">
-    </head>
+</head>
 <body>
-
     <header>
-        <?php include "./utils/navbarAdmin.php"; ?>
+        <nav>
+            <?php include "./utils/navbarAdmin.php"; ?>
+        </nav>
     </header>
 
     <main class="container">
-        <h1>Manage Coffee for **<?= $storeName ?>**</h1>
-        
+        <h1>Manage Coffee for Store (<?= $StoreID_raw ?> – <?= $storeName ?>)</h1>
+
         <a href="addCoffee.php?StoreID=<?= urlencode($StoreID_raw) ?>" class="add-btn">Add Coffee</a>
-        
+
         <table class="coffee-table">
             <tr>
                 <th>ID</th>
@@ -93,10 +93,10 @@ if ($stmt_coffee) {
                             <form method="POST" action="deleteCoffee.php" style="display:inline;">
                                 <input type="hidden" name="coffeeid" value="<?= htmlspecialchars($row['CoffeeID']); ?>">
                                 <input type="hidden" name="storeid" value="<?= htmlspecialchars($StoreID_raw); ?>">
-                                
-                                <button type="submit" 
-                                        onclick="return confirm('Are you sure want to remove **<?= $row['CoffeeName']; ?>** from **<?= $storeName ?>**?');"
-                                        class="delete-btn">
+
+                                <button type="submit"
+                                    onclick="return confirm('Are you sure want to remove <?= $row['CoffeeName']; ?> from <?= $storeName ?>?');"
+                                    class="delete-btn">
                                     Delete
                                 </button>
                             </form>
@@ -109,14 +109,15 @@ if ($stmt_coffee) {
                 </tr>
             <?php endif; ?>
         </table>
-        
-        <?php 
-        if ($stmt_coffee) {
-            mysqli_stmt_close($stmt_coffee);
-        }
-        ?>
-        
-        <a href="manageStore.php" class="back-btn">← Back to Manage Stores</a>
+
+        <?php if ($stmt_coffee) { mysqli_stmt_close($stmt_coffee); } ?>
+
+        <a href="manageStore.php" class="back-btn">← Back</a>
+
     </main>
+
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 </body>
 </html>

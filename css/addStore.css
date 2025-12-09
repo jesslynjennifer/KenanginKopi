@@ -1,10 +1,23 @@
+body {
+    min-height: 100vh;
+    background: url("../assets/background.jpeg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px 40px;
+}
+
 .add-container {
     width: 55%;
     margin: 130px auto;
     background: rgba(255, 255, 255, 0.9);
     padding: 35px 45px;
     border-radius: 15px;
-    text-align: center;
 }
 
 .title {
@@ -36,6 +49,7 @@
 .add-btn {
     width: 100%;
     background: #c79b70;
+    color: #fff;
     border: none;
     padding: 10px;
     border-radius: 8px;

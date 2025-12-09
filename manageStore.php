@@ -19,45 +19,45 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="css/manageStore.css">
 </head>
 <body>
+    <?php include "./utils/navbarAdmin.php"; ?>
 
-<?php include "./utils/navbarAdmin.php"; ?>
+    <main>
+        <div class="container">
 
-<div class="container">
+            <h2 class="title">Manage Store</h2>
 
-    <h2 class="title">Manage Store</h2>
+            <a href="addStore.php" class="add-btn">Add Store</a>
 
-    <a href="addStore.php" class="add-btn">Add Store</a>
+            <table class="store-table">
+                <tr>
+                    <th>Store ID</th>
+                    <th>Store Name</th>
+                    <th>Location</th>
+                    <th>Coffee</th>
+                    <th>Action</th>
+                </tr>
 
-    <table class="store-table">
-        <tr>
-            <th>Store ID</th>
-            <th>Store Name</th>
-            <th>Location</th>
-            <th>Coffee</th>
-            <th>Action</th>
-        </tr>
+                <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <tr>
+                    <td><?= $row['StoreID']; ?></td>
+                    <td><?= htmlspecialchars($row['StoreName']); ?></td>
+                    <td><?= htmlspecialchars($row['StoreLocation']); ?></td>
 
-        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-        <tr>
-            <td><?= $row['StoreID']; ?></td>
-            <td><?= htmlspecialchars($row['StoreName']); ?></td>
-            <td><?= htmlspecialchars($row['StoreLocation']); ?></td>
+                    <td>
+                        <a href="manageCoffee.php?storeid=<?= $row['StoreID']; ?>" class="manage-btn">Manage</a>
+                    </td>
 
-            <td>
-                <a href="manageCoffee.php?storeid=<?= $row['StoreID']; ?>" class="manage-btn">Manage</a>
-            </td>
+                    <td>
+                        <a href="deleteStore.php?storeid=<?= $row['StoreID']; ?>" class="delete-btn" onclick="return confirm('Are you sure want to delete this store?');">Delete</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
 
-            <td>
-                <a href="deleteStore.php?storeid=<?= $row['StoreID']; ?>" class="delete-btn" onclick="return confirm('Are you sure want to delete this store?');">Delete</a>
-            </td>
-        </tr>
-        <?php endwhile; ?>
+            </table>
 
-    </table>
+        </div>
+    </main>
 
-</div>
-
-<?php include "./utils/footer.php"; ?>
-
+    <?php include "./utils/footer.php"; ?>
 </body>
 </html>
