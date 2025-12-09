@@ -50,7 +50,7 @@ $coffeeRes = mysqli_query($conn, $coffeeQuery);
         <h2 class="store-title"><?= $store['StoreName']; ?></h2>
         <p class="location">Location: <?= htmlspecialchars($store['StoreLocation']); ?></p>
         <!-- buat ngirim StoreID -->
-        <a href="addCoffee.php?StoreID=<?= urlencode($storeid); ?>" class="manage-btn">Add Coffee</a>
+         <a href="addCoffee.php?StoreID=<?= urlencode($storeid); ?>" class="add-btn">Add Store</a>
         <h2 class="menu">Menu: </h2>
 
         <div class="coffee-list">
