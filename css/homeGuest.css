@@ -1,107 +1,127 @@
-body{
+/* General body and background style */
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, sans-serif;
+    /* Use the font that appears typical for clean web design, like Tahoma or similar */
+    font-family: Tahoma, Arial, sans-serif;
+    background-color: #f0f0f0; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Hero Section and Background --- */
+main {
+    flex-grow: 1; /* Make the main content take up all vertical space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.hero {
+    /* Set the background image to match the screenshot */
+    /* NOTE: You must replace 'path/to/your/coffee_shop_background.jpg' with the actual path */
     background-image: url('../assets/background.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-
-header{
-    top: 0;
-    background-color: rgb(255, 255, 255, 0.95);
-    
-}
-
-.navbar {
+    width: 100%;
+    min-height: 100%; /* Ensure it covers the whole height of the main section */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    color: rgb(176, 103, 40);
-}
-
-.logo a{
-    text-decoration: none;
-    color: rgb(176, 103, 40);   
-    font-weight: bold;
-    font-size: 25px;
-}
-
-.navbarDate {                               
-    padding: 0px 20px;
-    color: rgb(176, 103, 40);    
-    font-size: 20px;
-}
-
-
-.navbarButton a{
-    text-decoration: none;
-    font-weight: bold;
-    border: none;
-    border-radius: 12px;
-    background-color: rgb(151, 77, 40);
-    color: whitesmoke;
-    padding: 10px 15px;
-    font-size: 20px;
-}
-
-.hero{
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 85vh;
-
-    padding: 20px 0;
+    padding: 50px 20px; /* Add padding for breathing room */
 }
 
-
-.heroContainer {
-    padding: 0px 20px;
-    margin-top: 50px;
-    border: none;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255, 0.9);
-    width: 700px;
+/* Central White Box Container (hero-content) */
+.hero-content {
+    background-color: rgba(255, 255, 255, 0.95); /* White background with slight transparency */
+    border-radius: 5px;
+    padding: 30px 40px; 
+    width: 100%;
+    max-width: 650px; /* Lebar maksimal sesuai perkiraan gambar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow sedikit lebih jelas */
+    text-align: center;
 }
 
-.heroContainer h2{
-    color: rgb(135, 76, 0);
+/* Title Styling */
+.hero-content h2 {
+    font-size: 28px;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    font-weight: bold;
 }
 
+.hero-content p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 25px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* --- Store List Grid (gridContainer) --- */
 .gridContainer {
-    display: grid;
-    grid-template-columns: repeat(1,1fr);
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Jarak antara setiap template toko terlihat lebih rapat */
+    width: 100%;
 }
 
+/* Individual Store Template (gridTemplate) - The beige/brown rectangle */
 .gridTemplate {
-    margin: 0px 10px;
-    margin-bottom: 15px;
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-bottom: 10px;
-    border: 1px solid;
-    border-color: rgb(161, 85, 22, 0.9);
-    border-radius: 7px;
-    background-color: rgb(222, 184, 135, 0.8);
-    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Warna latar belakang terlihat sedikit beige/off-white */
+    background-color: #fcf6f1; 
+    padding: 15px 25px;
+    /* Border tipis berwarna cokelat muda */
+    border: 1px solid #dcd4c6; 
+    border-radius: 4px;
+    /* Sedikit bayangan di bawah untuk memberi kesan timbul */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.2s;
 }
 
-.gridTemplate h4{
-    margin: 5px 0px;
-    margin-bottom: 7px;
+.gridTemplate:hover {
+    background-color: #faebd7; /* Sedikit lebih gelap saat di-hover */
 }
 
-.gridTemplate button{
+.gridTemplate h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: normal; 
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* View Details Button */
+.viewDetailsButton {
+    /* Warna tombol terlihat seperti cokelat bata (Sienna/Peru) */
+    background-color: #b88670; 
+    color: white;
+    padding: 8px 15px;
     border: none;
-    border-radius: 12px;
-    background-color: rgb(151, 77, 40);
-    color: whitesmoke;
-    padding: 7px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    /* Tambahkan sedikit bayangan pada tombol agar menonjol */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
+.viewDetailsButton:hover {
+    background-color: #a0725c; /* Darker brown on hover */
+}
 
+.no-data {
+    color: #888;
+    margin-top: 20px;
+}

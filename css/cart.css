@@ -1,8 +1,7 @@
-body {
-    font-family: Arial, sans-serif;
+body{
     margin: 0;
     padding: 0;
-    background: #fafafa;
+    font-family: 'Times New Roman', Times, serif;
     background-image: url('../assets/background.jpeg');
     background-size: cover;
     background-position: center;
