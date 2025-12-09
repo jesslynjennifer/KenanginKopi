@@ -28,7 +28,7 @@ if (!$store) {
 }
 
 $coffeeQuery = "
-    SELECT StoreCoffee.CoffeeID, Coffee.CoffeeName, StoreCoffee.Price
+    SELECT StoreCoffee.CoffeeID, Coffee.CoffeeName, StoreCoffee.Price, Coffee.CoffeeDesc
     FROM StoreCoffee
     JOIN Coffee ON Coffee.CoffeeID = StoreCoffee.CoffeeID
     WHERE StoreCoffee.StoreID = '$storeid'
@@ -50,7 +50,7 @@ $coffeeRes = mysqli_query($conn, $coffeeQuery);
         <h2 class="store-title"><?= $store['StoreName']; ?></h2>
         <p class="location">Location: <?= htmlspecialchars($store['StoreLocation']); ?></p>
         <!-- buat ngirim StoreID -->
-        <a href="addCoffee.php?StoreID=<?= urlencode($storeid); ?>" class="manage-btn">Add Coffee</a>
+         <a href="addCoffee.php?StoreID=<?= urlencode($storeid); ?>" class="add-btn">Add Coffee</a>
         <h2 class="menu">Menu: </h2>
 
         <div class="coffee-list">

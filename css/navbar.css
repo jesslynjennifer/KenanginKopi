@@ -12,6 +12,7 @@ body{
 header{
     top: 0;
     background-color: rgb(255, 255, 255, 0.95);
+    position: sticky;
     
 }
 

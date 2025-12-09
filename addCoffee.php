@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
         
         
         if ($stmt_coffee) {
-            mysqli_stmt_bind_param($stmt_coffee, "siss", $newID, $coffeeName, $coffeePrice, $coffeeDescription);
+            mysqli_stmt_bind_param($stmt_coffee, "ssis", $newID, $coffeeName, $coffeePrice, $coffeeDescription);
             
             if (mysqli_stmt_execute($stmt_coffee)) {
                 
@@ -112,37 +112,50 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AddCoffee</title>
+    <link rel="stylesheet" href="./css/addCoffee.css">
 </head>
 <body>
     <header>
-        </header>
+        <?php include "./utils/navbarAdmin.php"; ?>
+    </header>
 
     <main>
-        <form action="" method="POST">
-            
-            <input type="hidden" name="StoreID" value="<?= htmlspecialchars($StoreID ?? '') ?>">
+        <div class="add-container">
+            <h2 class="title">Add Coffee</h2>
+            <form action="" method="POST" class="add-form">
+                
+                <input type="hidden" name="StoreID" value="<?= htmlspecialchars($StoreID ?? '') ?>">
 
-            <label for="coffeeName">Coffee Name : </label> <br>
-            <input type="text" name="coffeeName" id="coffeeName" value="<?= htmlspecialchars($coffeeName ?? '') ?>"> <br>
+                <div class="input-box">
+                    <label for="coffeeName">Coffee Name : </label> <br>
+                    <input type="text" name="coffeeName" id="coffeeName" value="<?= htmlspecialchars($coffeeName ?? '') ?>"> <br>
+                </div>
 
-            <label for="coffeePrice">Price : </label> <br>
-            <input type="text" name="coffeePrice" id="coffeePrice" value="<?= htmlspecialchars($coffeePrice ?? '') ?>"> <br>
+                <div class="input-box">
+                    <label for="coffeePrice">Price : </label> <br>
+                    <input type="text" name="coffeePrice" id="coffeePrice" value="<?= htmlspecialchars($coffeePrice ?? '') ?>"> <br>
+                </div>
 
-            <label for="coffeeDescription">Description : </label> <br>
-            <input type="text" name="coffeeDescription" id="coffeeDescription" value="<?= htmlspecialchars($coffeeDescription ?? '') ?>"> <br>
+                <div class="input-box">
+                    <label for="coffeeDescription">Description : </label> <br>
+                    <input type="text" name="coffeeDescription" id="coffeeDescription" value="<?= htmlspecialchars($coffeeDescription ?? '') ?>"> <br>
+                </div>
+                
+                <?php if (!empty($message)): ?>
+                    <p style="color: green; margin-bottom: 15px"><?= $message; ?></p>
+                <?php endif; ?>
+                
+                <?php if (!empty($error)): ?>
+                    <p class="error"> <?= $error; ?> </p>
+                <?php endif; ?>
 
-            <button type="submit">Add</button> <br>
-
-            <a href="manageCoffee.php?StoreID=<?= urlencode($StoreID ?? '') ?>"><< back</a>
-        </form>
-        
-        <?php if (!empty($message)): ?>
-            <p style="color: green;"><?= $message; ?></p>
-        <?php endif; ?>
-        
-        <?php if (!empty($error)): ?>
-            <p style="color: red;"><?= $error; ?></p>
-        <?php endif; ?>
+                <button type="submit" class="add-btn">Add</button> <br>
+    
+                <a href="storeDetailAdmin.php?storeid=<?= urlencode($StoreID ?? '') ?>" class="back-btn"><< back</a>
+            </form>
+        </div>
     </main>
+
+    <footer><?php include "./utils/footer.php"; ?></footer>
 </body>
 </html>

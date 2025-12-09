@@ -1,108 +1,68 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+/* File: ./css/addCoffee.css */
 
+body{
+    background-image: url(KenanginKopi\assets\background.jpeg);
+    background-size: cover;
+}
 
 .add-container {
-
-    background-image: url(background.jpeg); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex-grow: 1; 
-    padding: 50px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.add-form {
-    background-color: rgba(255, 255, 255, 0.95); 
-    border-radius: 5px;
-    padding: 40px 60px;
-    width: 100%;
-    max-width: 600px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center; 
+    width: 55%;
+    margin: 130px auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 35px 45px;
+    border-radius: 15px;
+    text-align: center;
 }
 
 .title {
-    font-size: 24px;
-    color: #333;
     margin-bottom: 30px;
+    font-size: 26px;
     font-weight: bold;
 }
 
-.input-box {
-    margin-bottom: 25px;
-    text-align: left; 
+.add-form .input-box {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-.input-box label {
-    display: block;
-    margin-bottom: 8px;
+.add-form label {
     font-size: 16px;
-    color: #555;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
-.input-box input[type="text"],
-.input-box select {
+.add-form input,
+.add-form select {
     width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
-    font-size: 16px;
-}
-
-.input-box select {
-    height: 50px; 
-    appearance: none; 
-    background-color: white;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #b8b8b8;
+    background: #fff;
 }
 
 .add-btn {
     width: 100%;
-    padding: 15px;
-    margin-top: 10px;
-    background-color: #A0522D; 
-    color: white;
+    background: #c79b70;
     border: none;
-    border-radius: 4px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 15px;
     cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s;
 }
 
 .add-btn:hover {
-    background-color: #8B4513; 
+    background: #a17850;
 }
 
 .back-btn {
-    display: block;
-    margin-top: 20px;
-    color: #555;
+    display: inline-block;
+    margin-top: 15px;
     text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-.back-btn:hover {
     color: #333;
 }
 
 .error {
-    color: #d9534f; 
+    color: red;
     margin-bottom: 15px;
-    text-align: left;
-    font-weight: bold;
 }
-
