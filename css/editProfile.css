@@ -1,0 +1,132 @@
+/* General body and background style */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Default background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Assuming navbarUser.php and footer.php include their own styles.
+   The main content area is the profile-container. */
+
+.profile-container {
+    /* Use the image as a background for the container to mimic the screenshot */
+    background-image: url('../assets/background.jpeg'); /* Ganti dengan path gambar yang sebenarnya */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-grow: 1; /* Take up available space */
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for the central form panel to match the screenshot */
+.profile-form {
+    background-color: rgba(255, 255, 255, 0.95); /* White background with slight transparency */
+    border-radius: 5px;
+    padding: 40px 60px 20px 60px; /* Adjusted padding to match spacing */
+    width: 100%;
+    max-width: 550px; /* Limit the width of the form container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center the button and back link */
+}
+
+/* Title styling - Match "Edit Profil" style */
+.title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+    /* This title is placed outside the form in the PHP, so we ensure it's displayed nicely */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 60px;
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 0;
+    /* Combine the title and form visually */
+    z-index: 1;
+}
+
+/* Input layout: Since the HTML labels/inputs are not wrapped in a div,
+   we'll ensure they are displayed as blocks and have proper spacing. */
+
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+    text-align: left; /* Labels aligned to the left */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 50px; /* Match the height of the inputs in the image */
+    margin-bottom: 10px;
+}
+
+/* Style for the "Save" button */
+.save-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background-color: #A0522D; /* Sienna color, similar to the button in the image */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #8B4513; /* Darker brown on hover */
+}
+
+/* Style for the "← Back" link */
+.back-btn {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: left; /* Align to the left to match the screenshot */
+    width: 100%;
+    max-width: 550px; /* Match the form width */
+}
+
+.back-btn:hover {
+    color: #333;
+}
+
+/* Error message styling */
+.error {
+    color: #d9534f; /* Red color for error */
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    /* Apply similar styling to the container to integrate it */
+    background-color: rgba(255, 230, 230, 0.9);
+    border: 1px solid #d9534f;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 550px;
+    box-sizing: border-box;
+}
