@@ -1,142 +1,118 @@
 <?php
 session_start();
+unset($_SESSION['logged_in_user']);
+unset($_SESSION['role']);
+unset($_SESSION['username']);
+
+
 include "./utils/db.php";
+$error = "";
 
-$paymentSuccess = false;
-$transactionId = null;
+if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
+    $uid = $_COOKIE['remember_user'];
+    $q = "SELECT * FROM Users WHERE UserID = '$uid'";
+    $r = mysqli_query($conn, $q);
 
-$cart = $_SESSION['cart'] ?? [];
+    if (mysqli_num_rows($r) == 1) {
+        $user = mysqli_fetch_assoc($r);
 
-$totalItem = 0;
-$totalPrice = 0;
+        $_SESSION['UserID'] = $user['UserID'];
+        $_SESSION['UserRole'] = $user['UserRole'];
+        $_SESSION['UserName'] = $user['UserName'];
 
-foreach ($cart as $item) {
-    $qty = (int)$item['qty'];
-    $price = (float)$item['price'];
-    $totalItem += $qty;
-    $totalPrice += ($qty * $price);
+        header("Location: " . 
+            ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+        exit;
+    }
 }
 
-if (isset($_POST['pay']) && !empty($cart)) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $transactionId = "T" . str_pad(rand(1, 9999), 4, "0", STR_PAD_LEFT);
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    $firstItem = reset($cart);
-    $storeid = $firstItem['storeid'] ?? null;
+    if (empty($username) || empty($password)) {
+        $error = "Username and password must be filled!";
+    } else {
 
-    if ($storeid === null) {
-        die("Error: storeid missing in cart. PLEASE FIX addToCart.php");
-    }
-
-    $userid = $_SESSION['UserID'];
-
-    $sqlTrans = "
-        INSERT INTO Transactions (TransactionID, UserID, StoreID, TransactionDate, TotalPrice)
-        VALUES ('$transactionId', '$userid', '$storeid', NOW(), '$totalPrice')
-    ";
-    mysqli_query($conn, $sqlTrans);
-
-    foreach ($cart as $coffeeid => $item) {
-        $qty = (int)$item['qty'];
-        $subtotal = $qty * $item['price'];
-
-        $sqlDetail = "
-            INSERT INTO TransactionDetails (TransactionID, CoffeeID, Qty, SubTotal)
-            VALUES ('$transactionId', '$coffeeid', '$qty', '$subtotal')
+        $query = "
+        SELECT * FROM Users 
+        WHERE UserName = '$username'
         ";
-        mysqli_query($conn, $sqlDetail);
+        
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) == 1) {
+
+            $user = mysqli_fetch_assoc($result);
+
+            if (password_verify($password, $user['UserPassword'])) {
+
+                $_SESSION['UserID'] = $user['UserID'];
+                $_SESSION['UserRole'] = $user['UserRole'];
+                $_SESSION['UserName'] = $user['UserName'];
+
+                    if (isset($_POST['remember'])) {
+                        setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
+                    }
+
+                header("Location: " . 
+                    ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+                exit;
+
+            } else {
+                $error = "Wrong password!";
+            }
+        } else {
+            $error = "Username not found!";
+        }
     }
-
-    unset($_SESSION['cart']);
-    $cart = [];
-
-    $paymentSuccess = true;
 }
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Shopping Cart - KenanginKopi</title>
-    <link rel="stylesheet" href="./css/cart.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <?php include "./utils/navbarUser.php"; ?>
-        </nav>
-    </header>
-
+    <?php include "./utils/navbarGuest.php"; ?>
     <main>
-        <div class="cart-container">
-            <div class="shopping-header">
-                <div class="shopping-title">Shopping Cart</div>
-                <div class="summary-line">
-                    <?= $totalItem ?> item(s) — Total: Rp <?= number_format($totalPrice, 0, ',', '.') ?>
+        <div class="login-container">
+            <form class="login-form" method="POST">
+                <h2>Login</h2>
+                <div class="input-box">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username">
                 </div>
-            </div>
 
-            <?php if ($paymentSuccess): ?>
-                <div class="success-message">
-                    Payment Successful! ID: <b><?= htmlspecialchars($transactionId) ?></b>
+                <div class="input-box">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password">
                 </div>
-                <p class="no-coffee">
-                    Cart is Empty.<br>
-                    <a class="back-home-btn" href="homeUser.php">Order Coffee Now</a>
-                </p>
-                <?php return; ?>
-            <?php endif; ?>
 
-            <table class="cart-table">
-                <tr>
-                    <th>Coffee</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Subtotal</th>
-                    <th>Action</th>
-                </tr>
+                <div class="remember-me">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
 
-                <?php foreach ($cart as $id => $item): ?>
-                    <?php
-                    $qty = (int)$item['qty'];
-                    $price = (float)$item['price'];
-                    $subtotal = $qty * $price;
-                    ?>
-                    <tr>
-                        <td><?= htmlspecialchars($item['name']) ?></td>
-                        <td><?= htmlspecialchars($item['desc']) ?></td>
-                        <td>Rp <?= number_format($price, 0, ',', '.') ?></td>
+                <div class="login-btn">
+                    <button type="submit">Login</button>
+                </div>
 
-                        <td>
-                            <form action="updateCart.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="coffeeid" value="<?= $id ?>">
-                                <input type="number" name="qty" value="<?= $qty ?>" min="1" style="width:70px;">
-                                <button type="submit" class="update-btn">Update</button>
-                            </form>
-                        </td>
+                <div class="register-link">
+                    <p>Don’t have an account? <a href="register.php"> Register here!</a></p>
+                </div>
 
-                        <td>Rp <?= number_format($subtotal, 0, ',', '.') ?></td>
-
-                        <td>
-                            <form action="deleteCart.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="coffeeid" value="<?= $id ?>">
-                                <button type="submit" class="delete-btn">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-
-            <form method="POST" style="margin-top:18px;">
-                <button type="submit" name="pay" class="pay-btn">Pay</button>
+                <?php if ($error) { echo "<p class='error'>$error</p>"; } ?>
             </form>
+
+
         </div>
     </main>
-
-    <footer>
-        <?php include "./utils/footer.php"; ?>
-    </footer>
-
+</div>
 </body>
 </html>
