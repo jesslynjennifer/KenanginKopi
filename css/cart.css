@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-/* ========================= GLOBAL ========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Georgia, serif;
-=======
 body {
     margin: 0;
     padding: 0;
@@ -22,29 +14,9 @@ main {
     justify-content: center;
     align-items: flex-start;
     padding: 60px 20px 40px;
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
 }
 
-body {
-    background: url("../assets/bg-coffee.jpg") center/cover no-repeat;
-    padding-top: 85px; /* Space for navbar */
-}
-
-/* ========================= MAIN CONTAINER ========================= */
 .cart-container {
-<<<<<<< HEAD
-    width: 70%;
-    margin: 40px auto;
-    background: rgba(255, 255, 255, 0.87);
-    padding: 35px 40px;
-    border-radius: 12px;
-    box-shadow: 0px 5px 16px rgba(0,0,0,0.18);
-}
-
-/* ========================= HEADER ========================= */
-.shopping-header {
-    margin-bottom: 25px;
-=======
     width: 80%;
     max-width: 950px;
     margin: 50px auto;
@@ -92,54 +64,12 @@ body {
     color: rgb(216, 166, 122);
     font-weight: bold;
     text-decoration: none;
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
 }
 
-.shopping-title {
-    font-size: 26px;
-    font-weight: bold;
-    color: #3a2a1e;
-}
-
-.summary-line {
-    margin-top: 6px;
-    color: #3a2a1e;
-    font-size: 15px;
-}
-
-/* ========================= TABLE ========================= */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-<<<<<<< HEAD
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.cart-table th {
-    padding: 12px;
-    background: #d9b780;
-    color: #3a2a1e;
-    font-size: 15px;
-}
-
-.cart-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    color: #3a2a1e;
-    font-size: 15px;
-}
-
-/* ========================= UPDATE & DELETE BUTTONS ========================= */
-.update-btn {
-    padding: 5px 10px;
-    border: 1px solid #b8956a;
-    background: #d9b780;
-    color: white;
-    border-radius: 6px;
-=======
 }
 
 .cart-table th {
@@ -171,21 +101,13 @@ body {
 .update-btn, .delete-btn, .pay-btn {
     padding: 7px 14px;
     border: none;
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
     cursor: pointer;
     font-size: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s ease;
 }
 
-<<<<<<< HEAD
-.update-btn:hover {
-    background: #c79c6e;
-}
-
-.delete-btn {
-    padding: 5px 10px;
-    border: none;
-    background: #d9534f;
-=======
 .update-btn {
     background: #d9a15f;
     color: white;
@@ -197,34 +119,14 @@ body {
 
 .delete-btn {
     background: #c54444;
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
     color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
 }
 
 .delete-btn:hover {
-<<<<<<< HEAD
-    background: #c9302c;
-=======
     background: #9f392e;
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
 }
 
-/* ========================= PAY BUTTON ========================= */
 .pay-btn {
-<<<<<<< HEAD
-    width: 100%;
-    padding: 12px;
-    background: #33aa55;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 15px;
-=======
     background: #37b26c;
     color: white;
     padding: 11px 20px;
@@ -232,42 +134,8 @@ body {
     width: 100%;
     margin-top: 25px;
     border-radius: 8px;
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
 }
-
 .pay-btn:hover {
-<<<<<<< HEAD
-    background: #2c944a;
-}
-
-/* ========================= EMPTY CART & SUCCESS ========================= */
-.no-coffee {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #3a2a1e;
-    text-align: left;
-}
-
-.back-home-btn {
-    text-decoration: none;
-    color: #2f6399;
-}
-
-.back-home-btn:hover {
-    text-decoration: underline;
-}
-
-/* ========================= PAYMENT SUCCESS BANNER ========================= */
-.success-message {
-    background: #f9e4c9;
-    padding: 12px 14px;
-    color: #3a2a1e;
-    border: 1px solid #e2c8a2;
-    border-radius: 6px;
-    margin-bottom: 12px;
-    font-size: 15px;
-}
-=======
     background: #2f9b5c;
 }
 
@@ -284,4 +152,3 @@ body {
         font-size: 15px;
     }
 }
->>>>>>> d1662e6b630de2a6f56eec7d6a32a9b6b4e3778f
