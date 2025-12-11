@@ -79,7 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    <?php include "./utils/navbarGuest.php"; ?>
+    <header>
+        <nav>
+            <?php include "./utils/navbarGuest.php"; ?>
+        </nav>
+    </header>
+
     <main>
         <div class="login-container">
             <form class="login-form" method="POST">
@@ -109,8 +114,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <?php if ($error) { echo "<p class='error'>$error</p>"; } ?>
             </form>
-
-
         </div>
     </main>
 </div>
