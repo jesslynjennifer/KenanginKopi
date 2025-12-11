@@ -1,136 +1,137 @@
-body{
+/* ========================= GLOBAL ========================= */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
-    background-image: url('../assets/background.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    box-sizing: border-box;
+    font-family: Georgia, serif;
 }
 
+body {
+    background: url("../assets/bg-coffee.jpg") center/cover no-repeat;
+    padding-top: 85px; /* Space for navbar */
+}
+
+/* ========================= MAIN CONTAINER ========================= */
 .cart-container {
-    width: 80%;
-    max-width: 1000px;
+    width: 70%;
     margin: 40px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    background: rgba(255, 255, 255, 0.87);
+    padding: 35px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 16px rgba(0,0,0,0.18);
 }
 
-.cart-container h1 {
-    font-size: 28px;
-    text-align: center;
+/* ========================= HEADER ========================= */
+.shopping-header {
     margin-bottom: 25px;
 }
 
+.shopping-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #3a2a1e;
+}
+
+.summary-line {
+    margin-top: 6px;
+    color: #3a2a1e;
+    font-size: 15px;
+}
+
+/* ========================= TABLE ========================= */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 25px;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .cart-table th {
-    background: #2b2b2b;
-    color: white;
     padding: 12px;
-    text-align: left;
-    font-size: 16px;
+    background: #d9b780;
+    color: #3a2a1e;
+    font-size: 15px;
 }
 
 .cart-table td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
+    color: #3a2a1e;
+    font-size: 15px;
 }
 
-.cart-table input[type="number"] {
-    width: 70px;
-    padding: 5px;
-    font-size: 14px;
-}
-
-.update-btn, .delete-btn, .pay-btn {
-    padding: 8px 14px;
-    border: none;
+/* ========================= UPDATE & DELETE BUTTONS ========================= */
+.update-btn {
+    padding: 5px 10px;
+    border: 1px solid #b8956a;
+    background: #d9b780;
+    color: white;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.2s ease;
 }
 
-.update-btn {
-    background: #f4a261;
-    color: white;
-}
 .update-btn:hover {
-    background: #e68a3f;
+    background: #c79c6e;
 }
 
 .delete-btn {
-    background: #e63946;
+    padding: 5px 10px;
+    border: none;
+    background: #d9534f;
     color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
 }
+
 .delete-btn:hover {
-    background: #cc2e3a;
+    background: #c9302c;
 }
 
+/* ========================= PAY BUTTON ========================= */
 .pay-btn {
-    background: #2a9d8f;
+    width: 100%;
+    padding: 12px;
+    background: #33aa55;
+    border: none;
     color: white;
-    padding: 12px 20px;
     font-size: 16px;
-    margin-top: 20px;
-    float: right;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
 }
+
 .pay-btn:hover {
-    background: #23867a;
+    background: #2c944a;
 }
 
-.total-box {
-    margin-top: 25px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
+/* ========================= EMPTY CART & SUCCESS ========================= */
 .no-coffee {
-    font-size: 18px;
-    padding: 30px 0;
-    color: #888;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #3a2a1e;
+    text-align: left;
 }
 
-@media (max-width: 768px) {
-    .cart-container {
-        width: 95%;
-    }
-
-    .cart-table th,
-    .cart-table td {
-        font-size: 14px;
-    }
-
-    .pay-btn {
-        width: 100%;
-        text-align: center;
-        float: none;
-    }
+.back-home-btn {
+    text-decoration: none;
+    color: #2f6399;
 }
 
-.success-box {
-    background-color: #f7e3c2;  
-    border: 1px solid #e0c199;
-    padding: 15px 20px;
-    border-radius: 10px;
-    width: 70%;
-    margin: 10px auto 20px auto;
-    text-align: center;
-    font-size: 1.1rem;
-    color: #6b3e1d;
-    font-weight: 600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.back-home-btn:hover {
+    text-decoration: underline;
 }
 
-.success-box .txid {
-    color: #8a532a;
-    font-weight: bold;
+/* ========================= PAYMENT SUCCESS BANNER ========================= */
+.success-message {
+    background: #f9e4c9;
+    padding: 12px 14px;
+    color: #3a2a1e;
+    border: 1px solid #e2c8a2;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 15px;
 }
