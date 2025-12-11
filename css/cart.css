@@ -1,56 +1,105 @@
-body{
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
-    background-image: url('../assets/background.jpeg');
+    min-height: 100vh;
+    background: url("../assets/background.jpeg") no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px 40px;
 }
 
 .cart-container {
     width: 80%;
-    max-width: 1000px;
-    margin: 40px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    max-width: 950px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 35px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.20);
+    backdrop-filter: blur(3px);
 }
 
-.cart-container h1 {
+.shopping-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.shopping-title {
     font-size: 28px;
-    text-align: center;
-    margin-bottom: 25px;
+    font-weight: bold;
+    color: #4b3b2a;
+}
+
+.summary-line {
+    margin-top: 5px;
+    color: #4b3b2a;
+    font-size: 18px;
+}
+
+.success-message {
+    background: #f4e7d2;
+    border-left: 5px solid #c49b63;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #5a3d23;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.no-coffee {
+    font-size: 18px;
+    color: #6b4f3d;
+    margin: 20px 0;
+}
+
+.back-home-btn {
+    color: rgb(216, 166, 122);
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .cart-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 25px;
+    margin-top: 20px;
 }
 
 .cart-table th {
-    background: #2b2b2b;
-    color: white;
+    background: #d9c2a3; 
+    color: #4b3b2a;
     padding: 12px;
-    text-align: left;
     font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #b89a74;
 }
 
 .cart-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    padding: 14px;
+    border: 0.5px solid #ddd;
+    color: #4b3b2a;
+    text-align: center;
+    font-size: 15px;
 }
 
 .cart-table input[type="number"] {
-    width: 70px;
-    padding: 5px;
+    width: 60px;
+    padding: 6px;
     font-size: 14px;
+    border: 1px solid #b89a74;
+    border-radius: 6px;
 }
 
 .update-btn, .delete-btn, .pay-btn {
-    padding: 8px 14px;
+    padding: 7px 14px;
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -60,77 +109,46 @@ body{
 }
 
 .update-btn {
-    background: #f4a261;
+    background: #d9a15f;
     color: white;
 }
+
 .update-btn:hover {
-    background: #e68a3f;
+    background: #c48743;
 }
 
 .delete-btn {
-    background: #e63946;
+    background: #c54444;
     color: white;
 }
+
 .delete-btn:hover {
-    background: #cc2e3a;
+    background: #9f392e;
 }
 
 .pay-btn {
-    background: #2a9d8f;
+    background: #37b26c;
     color: white;
-    padding: 12px 20px;
-    font-size: 16px;
-    margin-top: 20px;
-    float: right;
+    padding: 11px 20px;
+    font-size: 17px;
+    width: 100%;
+    margin-top: 25px;
+    border-radius: 8px;
 }
 .pay-btn:hover {
-    background: #23867a;
-}
-
-.total-box {
-    margin-top: 25px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.no-coffee {
-    font-size: 18px;
-    padding: 30px 0;
-    color: #888;
+    background: #2f9b5c;
 }
 
 @media (max-width: 768px) {
     .cart-container {
-        width: 95%;
+        width: 94%;
+        padding: 20px;
     }
-
-    .cart-table th,
-    .cart-table td {
-        font-size: 14px;
+    .cart-table th, .cart-table td {
+        font-size: 13px;
+        padding: 10px;
     }
-
     .pay-btn {
-        width: 100%;
-        text-align: center;
-        float: none;
+        font-size: 15px;
     }
-}
-
-.success-box {
-    background-color: #f7e3c2;  
-    border: 1px solid #e0c199;
-    padding: 15px 20px;
-    border-radius: 10px;
-    width: 70%;
-    margin: 10px auto 20px auto;
-    text-align: center;
-    font-size: 1.1rem;
-    color: #6b3e1d;
-    font-weight: 600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.success-box .txid {
-    color: #8a532a;
-    font-weight: bold;
 }

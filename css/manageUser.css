@@ -100,7 +100,7 @@ main {
 
 .user-table td {
     padding: 12px;
-    border-bottom: 1px solid #ccc;
+    border:  0.5px solid #ddd;
 }
 
 .delete-btn {
