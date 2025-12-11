@@ -131,13 +131,12 @@ if (isset($_POST['pay']) && !empty($cart)) {
             <form method="POST" style="margin-top:18px;">
                 <button type="submit" name="pay" class="pay-btn">Pay</button>
             </form>
-    
-    
-    </div>
-
+        </div>
     </main>
 
-<?php include "./utils/footer.php"; ?>
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 
 </body>
 </html>
