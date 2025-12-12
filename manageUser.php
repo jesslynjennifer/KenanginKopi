@@ -19,23 +19,23 @@ $res = mysqli_query($conn, $query);
 </head>
 <body>
 
-    <?php include "./utils/navbarAdmin.php"; ?>
+    <?php include "./utils/navbar.php"; ?>
 
     <main>
-            <div class="container">
+        <div class="container">
 
-        <h2 class="title">Manage User</h2>
+            <h2 class="title">Manage User</h2>
 
-        <table class="user-table">
-            <tr>
-                <th>UserID</th>
-                <th>Full Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Action</th>
-            </tr>
+            <table class="user-table">
+                <tr>
+                    <th>UserID</th>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
 
-            <?php while ($u = mysqli_fetch_assoc($res)) : ?>
+                <?php while ($u = mysqli_fetch_assoc($res)) : ?>
                 <tr>
                     <td><?= htmlspecialchars($u['UserID']); ?></td>
                     <td><?= htmlspecialchars($u['FullName']); ?></td>
@@ -49,11 +49,10 @@ $res = mysqli_query($conn, $query);
                         </form>
                     </td>
                 </tr>
-            <?php endwhile; ?>
+                <?php endwhile; ?>
+            </table>
 
-        </table>
-
-    </div>
+        </div>
     </main>
 
     <?php include "./utils/footer.php"; ?>

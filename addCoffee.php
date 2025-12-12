@@ -1,28 +1,22 @@
 <?php
-
 session_start();
 include "./utils/db.php";
 $message = "";
 $error = "";
-
 
 if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
     header("Location: login.php");
     exit;
 }
 
-
 if (!isset($_GET['StoreID'])) {
     $error = "Store ID is missing.";
-    
     $StoreID = null; 
 } else {
     $StoreID = $_GET['StoreID'];
 }
 
-
 function generateCoffeeID($conn) {
-    
     $query = "SELECT CoffeeID FROM Coffee ORDER BY CoffeeID DESC LIMIT 1";
     $res = mysqli_query($conn, $query);
 
@@ -34,21 +28,16 @@ function generateCoffeeID($conn) {
     $lastID = intval(substr($row["CoffeeID"], 1));
     $newID = $lastID + 1;
 
-    
     return "C" . str_pad($newID, 4, "0", STR_PAD_LEFT);
 }
 
-
-if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
+if ($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID) {
     $coffeeName = $_POST['coffeeName'];
     $coffeePrice = $_POST['coffeePrice'];
     $coffeeDescription = $_POST['coffeeDescription'];
-    
-    
     $postedStoreID = $_POST['StoreID'];
-    
-    
-    if(empty($coffeeName)){
+
+    if (empty($coffeeName)) {
         $error = "Name must be filled.";
     } elseif (!preg_match("/^[a-zA-Z\s]+$/", $coffeeName)) {
         $error = "Name must be alphabetic only.";
@@ -58,47 +47,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
         $error = "Description must be filled.";
     } elseif (str_word_count($coffeeDescription) < 3) {
         $error = "Description must be minimum 3 words.";
-    }
-    
-    elseif ($postedStoreID !== $StoreID) {
+    } elseif ($postedStoreID !== $StoreID) {
         $error = "Security error: Store ID mismatch.";
     }
 
-
-    if(empty($error)){
-        
+    if (empty($error)) {
         $newID = generateCoffeeID($conn);
-        
-        
-        $stmt_coffee = mysqli_prepare($conn, "INSERT INTO Coffee (CoffeeID, CoffeeName, CoffeePrice, CoffeeDesc) VALUES (?, ?, ?, ?)");
-        
-        
-        
+
+        $stmt_coffee = mysqli_prepare($conn, "INSERT INTO Coffee (CoffeeID, CoffeeName, CoffeeDesc) VALUES (?, ?, ?)");
+
         if ($stmt_coffee) {
-            mysqli_stmt_bind_param($stmt_coffee, "ssis", $newID, $coffeeName, $coffeePrice, $coffeeDescription);
-            
+            mysqli_stmt_bind_param($stmt_coffee, "sss", $newID, $coffeeName, $coffeeDescription);
+
             if (mysqli_stmt_execute($stmt_coffee)) {
-                
-                
                 $stmt_storecoffee = mysqli_prepare($conn, "INSERT INTO StoreCoffee (StoreID, CoffeeID, Price) VALUES (?, ?, ?)");
-                
+
                 if ($stmt_storecoffee) {
                     mysqli_stmt_bind_param($stmt_storecoffee, "ssd", $StoreID, $newID, $coffeePrice);
-                    
+
                     if (mysqli_stmt_execute($stmt_storecoffee)) {
-                        $message = "Added " . htmlspecialchars($coffeeName) . " successfully!";
-                        
                         header("Location: manageCoffee.php?StoreID=" . urlencode($StoreID));
                         exit;
                     } else {
                         mysqli_query($conn, "DELETE FROM Coffee WHERE CoffeeID = '$newID'");
-                        $error = "Add failed: Could not link coffee to store. " . mysqli_error($conn);
+                        $error = "Add failed.";
                     }
                     mysqli_stmt_close($stmt_storecoffee);
                 }
-                
             } else {
-                $error = "Add failed: Could not add coffee data. " . mysqli_error($conn);
+                $error = "Add failed.";
             }
             mysqli_stmt_close($stmt_coffee);
         }
@@ -116,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
 </head>
 <body>
     <header>
-        <?php include "./utils/navbarAdmin.php"; ?>
+        <?php include "./utils/navbar.php"; ?>
     </header>
 
     <main>
@@ -127,29 +104,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID){
                 <input type="hidden" name="StoreID" value="<?= htmlspecialchars($StoreID ?? '') ?>">
 
                 <div class="input-box">
-                    <label for="coffeeName">Coffee Name : </label> <br>
-                    <input type="text" name="coffeeName" id="coffeeName" value="<?= htmlspecialchars($coffeeName ?? '') ?>"> <br>
+                    <label for="coffeeName">Coffee Name :</label><br>
+                    <input type="text" name="coffeeName" id="coffeeName" value="<?= htmlspecialchars($coffeeName ?? '') ?>"><br>
                 </div>
 
                 <div class="input-box">
-                    <label for="coffeePrice">Price : </label> <br>
-                    <input type="text" name="coffeePrice" id="coffeePrice" value="<?= htmlspecialchars($coffeePrice ?? '') ?>"> <br>
+                    <label for="coffeePrice">Price :</label><br>
+                    <input type="text" name="coffeePrice" id="coffeePrice" value="<?= htmlspecialchars($coffeePrice ?? '') ?>"><br>
                 </div>
 
                 <div class="input-box">
-                    <label for="coffeeDescription">Description : </label> <br>
-                    <input type="text" name="coffeeDescription" id="coffeeDescription" value="<?= htmlspecialchars($coffeeDescription ?? '') ?>"> <br>
+                    <label for="coffeeDescription">Description :</label><br>
+                    <input type="text" name="coffeeDescription" id="coffeeDescription" value="<?= htmlspecialchars($coffeeDescription ?? '') ?>"><br>
                 </div>
-                
+
                 <?php if (!empty($message)): ?>
                     <p style="color: green; margin-bottom: 15px"><?= $message; ?></p>
                 <?php endif; ?>
-                
+
                 <?php if (!empty($error)): ?>
-                    <p class="error"> <?= $error; ?> </p>
+                    <p class="error"><?= $error; ?></p>
                 <?php endif; ?>
 
-                <button type="submit" class="add-btn">Add</button> <br>
+                <button type="submit" class="add-btn">Add</button><br>
     
                 <a href="storeDetailAdmin.php?storeid=<?= urlencode($StoreID ?? '') ?>" class="back-btn"><< back</a>
             </form>

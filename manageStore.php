@@ -19,11 +19,10 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="css/manageStore.css">
 </head>
 <body>
-    <?php include "./utils/navbarAdmin.php"; ?>
+    <?php include "./utils/navbar.php"; ?>
 
     <main>
         <div class="container">
-
             <h2 class="title">Manage Store</h2>
 
             <a href="addStore.php" class="add-btn">Add Store</a>
@@ -52,9 +51,7 @@ $result = mysqli_query($conn, $query);
                     </td>
                 </tr>
                 <?php endwhile; ?>
-
             </table>
-
         </div>
     </main>
 
