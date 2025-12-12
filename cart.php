@@ -149,7 +149,10 @@ if (isset($_POST['pay']) && !empty($cart)) {
             <form method="POST" style="margin-top:18px;">
                 <button type="submit" name="pay" class="pay-btn">Pay</button>
             </form>
+            <a href="storeDetailUser.php?storeid=S0001" class="back-button">← Back</a>
         </div>
+        
+
     </main>
 
     <footer>
