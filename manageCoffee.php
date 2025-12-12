@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include "./utils/db.php";
 
@@ -62,11 +61,8 @@ if ($stmt_coffee) {
     <link rel="stylesheet" href="css/manageCoffee.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <?php include "./utils/navbarAdmin.php"; ?>
-        </nav>
-    </header>
+
+    <?php include "./utils/navbar.php"; ?>
 
     <main class="container">
         <h1>Manage Coffee for Store (<?= $StoreID_raw ?> – <?= $storeName ?>)</h1>
@@ -93,12 +89,7 @@ if ($stmt_coffee) {
                             <form method="POST" action="deleteCoffee.php" style="display:inline;">
                                 <input type="hidden" name="coffeeid" value="<?= htmlspecialchars($row['CoffeeID']); ?>">
                                 <input type="hidden" name="storeid" value="<?= htmlspecialchars($StoreID_raw); ?>">
-
-                                <button type="submit"
-                                    onclick="return confirm('Are you sure want to remove <?= $row['CoffeeName']; ?> from <?= $storeName ?>?');"
-                                    class="delete-btn">
-                                    Delete
-                                </button>
+                                <button type="submit" onclick="return confirm('Are you sure want to remove <?= $row['CoffeeName']; ?> from <?= $storeName ?>?');" class="delete-btn">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -116,8 +107,7 @@ if ($stmt_coffee) {
 
     </main>
 
-    <footer>
-        <?php include "./utils/footer.php"; ?>
-    </footer>
+    <?php include "./utils/footer.php"; ?>
+
 </body>
 </html>

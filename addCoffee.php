@@ -98,9 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID) {
 
     <main>
         <div class="add-container">
-            <h2 class="title">Add Coffee</h2>
+            <h2 class="title">Add Coffee to Store <?= htmlspecialchars($StoreID) ?></h2>
+
             <form action="" method="POST" class="add-form">
-                
+
                 <input type="hidden" name="StoreID" value="<?= htmlspecialchars($StoreID ?? '') ?>">
 
                 <div class="input-box">
@@ -127,8 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $StoreID) {
                 <?php endif; ?>
 
                 <button type="submit" class="add-btn">Add</button><br>
-    
-                <a href="storeDetailAdmin.php?storeid=<?= urlencode($StoreID ?? '') ?>" class="back-btn"><< back</a>
+
+                <a href="storeDetailAdmin.php?storeid=<?= urlencode($StoreID ?? '') ?>" class="back-btn">← Back</a>
             </form>
         </div>
     </main>
