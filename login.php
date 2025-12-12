@@ -110,15 +110,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </main>
-<<<<<<< HEAD
 
     <footer>
         <?php include "./utils/footer.php"; ?>
-=======
-</div>
-    <footer>
-        <?php include './utils/footer.php'; ?>
->>>>>>> c7918e14ce205de9a9b64bb3337c636bafbaa86a
     </footer>
 </body>
 </html>
