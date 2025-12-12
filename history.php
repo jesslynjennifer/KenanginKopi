@@ -42,7 +42,7 @@ $transactions = mysqli_query($conn, $query);
                 <div class="empty-box">
                     <p class="empty-text">There is no transaction</p>
                     <p class="small">You haven’t order coffee yet.</p>
-                    <a href="homeUser.php" class="order-btn">Order Now</a>
+                    <a href="index.php" class="order-btn">Order Now</a>
                 </div>
 
                 <a href="profile.php" class="back-btn">← Back</a>
