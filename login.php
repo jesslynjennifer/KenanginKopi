@@ -21,7 +21,7 @@ if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
         $_SESSION['UserName'] = $user['UserName'];
 
         header("Location: " . 
-            ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+            ($user['UserRole'] == "Admin" ? "index.php" : "index.php"));
         exit;
     }
 }
