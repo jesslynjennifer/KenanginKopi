@@ -2,6 +2,16 @@
 session_start();
 include "./utils/db.php";
 
+//ngecek apakah ada transaksi apa ngga
+$userid = $_SESSION['UserID'];
+
+$sqlCheckOrder = "SELECT COUNT(*) AS total FROM Transactions WHERE UserID = '$userid'";
+$resultCheck = mysqli_query($conn, $sqlCheckOrder);
+$rowCheck = mysqli_fetch_assoc($resultCheck);
+
+$noOrderYet = ($rowCheck['total'] == 0);
+
+
 $paymentSuccess = false;
 $transactionId = null;
 
@@ -71,6 +81,14 @@ if (isset($_POST['pay']) && !empty($cart)) {
 
     <main>
         <div class="cart-container">
+
+            <?php if ($noOrderYet): ?>
+                <div class="no-coffee-message">
+                    You have no coffee order yet.<br>
+                    <a class="back-home-btn" href="index.php">Order Coffee Now</a>
+                </div>
+            <?php endif; ?>
+
             <div class="shopping-header">
                 <div class="shopping-title">Shopping Cart</div>
                 <div class="summary-line">
@@ -131,7 +149,10 @@ if (isset($_POST['pay']) && !empty($cart)) {
             <form method="POST" style="margin-top:18px;">
                 <button type="submit" name="pay" class="pay-btn">Pay</button>
             </form>
+            <a href="storeDetailUser.php?storeid=S0001" class="back-button">← Back</a>
         </div>
+        
+
     </main>
 
     <footer>

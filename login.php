@@ -19,7 +19,12 @@ if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
         $_SESSION['UserRole'] = $user['UserRole'];
         $_SESSION['UserName'] = $user['UserName'];
 
+<<<<<<< HEAD
         header("Location: index.php");
+=======
+        header("Location: " . 
+            ($user['UserRole'] == "Admin" ? "index.php" : "index.php"));
+>>>>>>> c7918e14ce205de9a9b64bb3337c636bafbaa86a
         exit;
     }
 }
@@ -51,7 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
                 }
 
+<<<<<<< HEAD
                 header("Location: index.php");
+=======
+                header("Location: " . 
+                    ($user['UserRole'] == "Admin" ? "index.php" : "index.php"));
+>>>>>>> c7918e14ce205de9a9b64bb3337c636bafbaa86a
                 exit;
             } else {
                 $error = "Wrong password!";
@@ -110,9 +120,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </main>
+<<<<<<< HEAD
 
     <footer>
         <?php include "./utils/footer.php"; ?>
+=======
+</div>
+    <footer>
+        <?php include './utils/footer.php'; ?>
+>>>>>>> c7918e14ce205de9a9b64bb3337c636bafbaa86a
     </footer>
 </body>
 </html>
