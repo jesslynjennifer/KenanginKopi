@@ -12,7 +12,7 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "User") {
         <div class="navbar">
 
             <div class="logo">
-                <a href="homeUser.php">KenanginKopi</a>
+                <a href="index.php">KenanginKopi</a>
             </div>
 
             <div class="navbarDate">
