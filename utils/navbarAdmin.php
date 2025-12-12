@@ -12,7 +12,7 @@ if (!isset($_SESSION['UserRole']) || $_SESSION['UserRole'] !== "Admin") {
         <div class="navbar">
 
             <div class="logo">
-                <a href="homeAdmin.php">KenanginKopi</a>
+                <a href="index.php">KenanginKopi</a>
             </div>
 
             <div class="navbarDate">

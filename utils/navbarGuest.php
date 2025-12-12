@@ -4,7 +4,7 @@
     <nav>
         <div class="navbar">
                 <div class="logo">
-                    <a href="homeGuest.php">KenanginKopi</a>
+                    <a href="index.php">KenanginKopi</a>
                 </div>
 
                 <div class="navbarDate">
