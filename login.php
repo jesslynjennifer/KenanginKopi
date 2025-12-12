@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
 
                 header("Location: " . 
-                    ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+                    ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "index.php"));
                 exit;
 
             } else {
