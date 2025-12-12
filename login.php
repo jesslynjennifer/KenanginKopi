@@ -117,5 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </main>
 </div>
+    <footer>
+        <?php include './utils/footer.php'; ?>
+    </footer>
 </body>
 </html>
