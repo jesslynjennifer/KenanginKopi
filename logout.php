@@ -8,6 +8,6 @@ if (isset($_COOKIE['remember_user'])) {
     setcookie('remember_user', '', time() - 3600, "/"); 
 }
 
-header("Location: homeGuest.php");
+header("Location: index.php");
 exit;
 ?>

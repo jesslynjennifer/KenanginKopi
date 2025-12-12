@@ -2,27 +2,12 @@
 session_start();
 include './utils/db.php';
 
-// Detect login status & role
 $isLoggedIn = isset($_SESSION['UserID']);
 $role = $isLoggedIn ? $_SESSION['UserRole'] : 'Guest';
 
-// Tentukan navbar & detail link berdasarkan role
-if (!$isLoggedIn) {
-    $navbar = "./utils/navbarGuest.php";
-    $detailPage = "storeDetailGuest.php";
-} else {
-    if ($role === "User") {
-        $navbar = "./utils/navbarUser.php";
-        $detailPage = "storeDetailUser.php";
-    } elseif ($role === "Admin") {
-        $navbar = "./utils/navbarAdmin.php";
-        $detailPage = "storeDetailAdmin.php";
-    } else {
-        $navbar = "./utils/navbarGuest.php";
-        $detailPage = "storeDetailGuest.php";
-    }
-}
+$detailPage = "storeDetail.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,16 +18,12 @@ if (!$isLoggedIn) {
 </head>
 
 <body>
-    <header>
-        <nav>
-            <?php include $navbar; ?>
-        </nav>
-    </header>
+
+    <?php include "./utils/navbar.php"; ?>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-
                 <h2>KenanginKopi</h2>
                 <p>Favourable taste for your mood</p>
 

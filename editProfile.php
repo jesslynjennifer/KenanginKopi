@@ -22,7 +22,6 @@ $username = $user['UserName'];
 $email = $user['UserEmail'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $newUsername = trim($_POST['username']);
     $newEmail = trim($_POST['email']);
 
@@ -35,17 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         if (substr_count($newEmail, '@') != 1) {
             $error = "Email must contain exactly one '@'";
-        }
-        elseif (!str_contains($newEmail, '.')) {
+        } elseif (!str_contains($newEmail, '.')) {
             $error = "Email must contain at least one '.'";
-        }
-        elseif ($newEmail[0] == '@' || $newEmail[0] == '.') {
+        } elseif ($newEmail[0] == '@' || $newEmail[0] == '.') {
             $error = "Email cannot start with '@' or '.'";
-        }
-        elseif ($newEmail[-1] == '@' || $newEmail[-1] == '.') {
+        } elseif ($newEmail[-1] == '@' || $newEmail[-1] == '.') {
             $error = "Email cannot end with '@' or '.'";
-        }
-        elseif (
+        } elseif (
             str_contains($newEmail, '@@') ||
             str_contains($newEmail, '..') ||
             str_contains($newEmail, '@.') ||
@@ -56,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($error === "") {
-
         $update = "
             UPDATE Users 
             SET UserName = '$newUsername',
@@ -79,34 +73,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Edit Profile - KenanginKopi</title>
-    <link rel="stylesheet" href="./css/editProfile.css"> 
+    <link rel="stylesheet" href="./css/editProfile.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <?php include "./utils/navbarUser.php"; ?>
+            <?php include "./utils/navbar.php"; ?>
         </nav>
     </header>
 
     <main>
         <div class="profile-container">
             <h2 class="title">Edit Profil</h2>
-        
+
             <?php if ($error): ?>
                 <p class="error"><?= $error ?></p>
             <?php endif; ?>
-        
+
             <form method="POST" class="profile-form">
                 <label>Username:</label>
                 <input type="text" name="username" value="<?= htmlspecialchars($username) ?>">
-        
+
                 <label>Email:</label>
                 <input type="text" name="email" value="<?= htmlspecialchars($email) ?>">
-        
+
                 <button class="save-btn" type="submit">Save</button>
             </form>
-        
+
             <a href="profile.php" class="back-btn">← Back</a>
         </div>
     </main>

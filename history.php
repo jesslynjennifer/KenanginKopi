@@ -19,7 +19,6 @@ $query = "
 
 $transactions = mysqli_query($conn, $query);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,40 +29,40 @@ $transactions = mysqli_query($conn, $query);
 <body>
     <header>
         <nav>
-            <?php include "./utils/navbarUser.php"; ?>
+            <?php include "./utils/navbar.php"; ?>
         </nav>
     </header>
 
     <main>
         <div class="history-container">
             <h2 class="title">Order History</h2>
-        
+
             <?php if (mysqli_num_rows($transactions) == 0): ?>
-        
+
                 <div class="empty-box">
                     <p class="empty-text">There is no transaction</p>
                     <p class="small">You haven’t order coffee yet.</p>
                     <a href="homeUser.php" class="order-btn">Order Now</a>
                 </div>
-        
+
                 <a href="profile.php" class="back-btn">← Back</a>
-        
+
             <?php else: ?>
                 <?php while ($t = mysqli_fetch_assoc($transactions)): ?>
-        
+
                     <div class="transaction-block">
                         <h3 class="transaction-id">Transaction ID: <?= $t['TransactionID'] ?></h3>
                         <p class="date">Date: <?= $t['TransactionDate'] ?></p>
                         <p class="store">Store: <?= htmlspecialchars($t['StoreName']) ?></p>
                         <h4 class="ordered-items">Ordered Items:</h4>
-        
+
                         <table class="history-table">
                             <tr>
                                 <th>Coffee</th>
                                 <th>Qty</th>
                                 <th>Subtotal</th>
                             </tr>
-        
+
                             <?php
                             $transId = $t['TransactionID'];
                             $detailQuery = "
@@ -73,7 +72,7 @@ $transactions = mysqli_query($conn, $query);
                                 WHERE TD.TransactionID = '$transId'
                             ";
                             $detailRes = mysqli_query($conn, $detailQuery);
-        
+
                             while ($d = mysqli_fetch_assoc($detailRes)): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($d['CoffeeName']) ?></td>
@@ -81,7 +80,7 @@ $transactions = mysqli_query($conn, $query);
                                     <td>Rp <?= number_format($d['SubTotal'], 0, ',', '.') ?></td>
                                 </tr>
                             <?php endwhile; ?>
-        
+
                             <tr class="total-row">
                                 <td colspan="2" class="total-label">Total</td>
                                 <td class="total-price">
@@ -90,11 +89,11 @@ $transactions = mysqli_query($conn, $query);
                             </tr>
                         </table>
                     </div>
-        
+
                 <?php endwhile; ?>
-        
+
                 <a href="profile.php" class="back-btn">← Back</a>
-        
+
             <?php endif; ?>
         </div>
     </main>

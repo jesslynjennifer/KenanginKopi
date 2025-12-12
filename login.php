@@ -4,7 +4,6 @@ unset($_SESSION['logged_in_user']);
 unset($_SESSION['role']);
 unset($_SESSION['username']);
 
-
 include "./utils/db.php";
 $error = "";
 
@@ -20,14 +19,12 @@ if (!isset($_SESSION['UserID']) && isset($_COOKIE['remember_user'])) {
         $_SESSION['UserRole'] = $user['UserRole'];
         $_SESSION['UserName'] = $user['UserName'];
 
-        header("Location: " . 
-            ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+        header("Location: index.php");
         exit;
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
@@ -36,30 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         $query = "
-        SELECT * FROM Users 
-        WHERE UserName = '$username'
+            SELECT * FROM Users 
+            WHERE UserName = '$username'
         ";
         
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
-
             $user = mysqli_fetch_assoc($result);
-
             if (password_verify($password, $user['UserPassword'])) {
 
                 $_SESSION['UserID'] = $user['UserID'];
                 $_SESSION['UserRole'] = $user['UserRole'];
                 $_SESSION['UserName'] = $user['UserName'];
 
-                    if (isset($_POST['remember'])) {
-                        setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
-                    }
+                if (isset($_POST['remember'])) {
+                    setcookie("remember_user", $user['UserID'], time() + (7 * 24 * 60 * 60), "/");
+                }
 
-                header("Location: " . 
-                    ($user['UserRole'] == "Admin" ? "homeAdmin.php" : "homeUser.php"));
+                header("Location: index.php");
                 exit;
-
             } else {
                 $error = "Wrong password!";
             }
@@ -81,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <nav>
-            <?php include "./utils/navbarGuest.php"; ?>
+            <?php include "./utils/navbar.php"; ?>
         </nav>
     </header>
 
@@ -89,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-container">
             <form class="login-form" method="POST">
                 <h2>Login</h2>
+
                 <div class="input-box">
                     <label for="username">Username:</label>
                     <input type="text" name="username">
@@ -109,13 +103,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="register-link">
-                    <p>Don’t have an account? <a href="register.php"> Register here!</a></p>
+                    <p>Don’t have an account? <a href="register.php">Register here!</a></p>
                 </div>
 
                 <?php if ($error) { echo "<p class='error'>$error</p>"; } ?>
             </form>
         </div>
     </main>
-</div>
+
+    <footer>
+        <?php include "./utils/footer.php"; ?>
+    </footer>
 </body>
 </html>

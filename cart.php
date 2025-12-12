@@ -65,7 +65,7 @@ if (isset($_POST['pay']) && !empty($cart)) {
 <body>
     <header>
         <nav>
-            <?php include "./utils/navbarUser.php"; ?>
+            <?php include "./utils/navbar.php"; ?>
         </nav>
     </header>
 
@@ -82,7 +82,7 @@ if (isset($_POST['pay']) && !empty($cart)) {
             <div class="success-message">
                 Payment Successful! ID: <b><?= htmlspecialchars($transactionId) ?></b>
             </div>
-            <p class="no-coffee">Cart is Empty.<br><a class="back-home-btn" href="homeUser.php">Order Coffee Now</a></p>
+            <p class="no-coffee">Cart is Empty.<br><a class="back-home-btn" href="index.php">Order Coffee Now</a></p>
             <?php exit; ?>
         <?php endif; ?>
     
